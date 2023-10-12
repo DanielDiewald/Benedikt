@@ -2,7 +2,7 @@ import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 
 export const useChatStore = defineStore('chat', {
-  state: () => ({ messages: null }),
+  state: () => ({ messages: null, totalMessages: null, uniqueSenders: null }),
   actions: {
     async parseTextFile(text) {
       const regex = /\[(\d{2}.\d{2}.\d{2}, \d{2}:\d{2}:\d{2})\] ([^:]+): (.+)/g;
@@ -27,6 +27,16 @@ export const useChatStore = defineStore('chat', {
       }
 
       this.messages = messages;
+      this.totalMessages = messages.length;
+    },
+    async countUniqueSenders(text) {
+      const uniqueSenders = new Set();
+
+      text.forEach((message) => {
+        uniqueSenders.add(message.sender);
+      });
+
+      this.uniqueSenders = uniqueSenders.size;
     },
   },
 });

@@ -19,23 +19,60 @@ async function handleUpload() {
     localStorage.setItem('chat', text);
 
     await chatStore.parseTextFile(text);
-    console.log(chatStore.messages)
+    console.log(chatStore.messages);
+    await chatStore.countUniqueSenders(chatStore.messages);
   }
 }
-
 </script>
 
 <template>
-  <q-file 
-  rounded 
-  standout 
-  v-model="file"
-  accept=".txt"
-  @update:model-value="handleUpload()"
-  label="Rounded filled">
-    <template v-slot:prepend> <q-icon name="attach_file" /> 
+  <q-file
+    rounded
+    standout
+    v-model="file"
+    accept=".txt"
+    @update:model-value="handleUpload()"
+    label="_chat.txt"
+  >
+    <template v-slot:prepend> <q-icon name="attach_file" /> </template>
+    <template v-slot:append>
+      <q-btn round dense flat icon="help"
+        ><q-tooltip>Tutorial</q-tooltip></q-btn
+      >
     </template>
   </q-file>
+  <div class="q-mt-md" v-if="chatStore.messages != null">
+    <div class="row">
+      <div>
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="brand" name="messages" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.totalMessages }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-xs"
+              >total messages</q-item-label
+            ></q-item-section
+          >
+        </q-item>
+      </div>
+      <q-separator vertical inset />
+      <div>
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="brand" name="people" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-xs"
+              >people in chat</q-item-label
+            ></q-item-section
+          >
+        </q-item>
+      </div>
+    </div>
+  </div>
+  {{ chatStore.messages }}
 </template>
 <style lang="sass">
 .text-brand
