@@ -2,7 +2,7 @@ import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 
 export const useChatStore = defineStore('chat', {
-  state: () => ({ chat: [] }),
+  state: () => ({ messages: null }),
   actions: {
     async parseTextFile(text) {
       const regex = /\[(\d{2}.\d{2}.\d{2}, \d{2}:\d{2}:\d{2})\] ([^:]+): (.+)/g;
@@ -26,7 +26,7 @@ export const useChatStore = defineStore('chat', {
         messages.push({ unixTime, sender, message });
       }
 
-      this.chat = messages;
+      this.messages = messages;
     },
   },
 });
