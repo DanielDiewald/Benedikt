@@ -25,9 +25,12 @@ async function handleUpload() {
 </script>
 
 <template>
-  <HowTo></HowTo>
+  <HowTo v-if="chatStore.messages == null"></HowTo>
   <BarChart v-if="chatStore.messages != null" />
+  <br />
+  <br />
   <q-file
+    class="fixed-bottom q-ma-lg"
     rounded
     standout
     v-model="file"

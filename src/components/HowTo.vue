@@ -1,9 +1,9 @@
 <template>
   <div class="col-12 q-pa-md">
-    <p class="text-h4 text-brand q-ml-md text-bold gt-sm">
+    <p class="text-h4 text-brand text-bold gt-sm">
       <span class="ben-brand">How to use Benedikt?</span>
     </p>
-    <p class="text-h6 text-brand q-ml-md q-mr-md text-bold lt-md">
+    <p class="text-h6 text-brand q-mr-md text-bold lt-md">
       <span class="ben-brand">How to use Benedikt?</span>
     </p>
     <div class="row items-start">
