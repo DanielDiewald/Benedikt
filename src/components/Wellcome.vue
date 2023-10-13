@@ -1,39 +1,20 @@
 <template>
   <div class="row">
     <div class="col-12 q-pa-md">
-      <center>
-        <div class="Benedikt-title text-center">
-          <p class="text-h1">🦉</p>
-          <p class="text-brand text-h4 q-mb-none text-bold">
-            Welcome to "Benedikt"
-          </p>
-          <p class="text-subtitle1 q-mt-none text-left q-mb-none">
-            Your Personal WhatsApp Assistant for Tracking Stats!
-          </p>
-          <p class="text-caption text-left">
-            We're thrilled to introduce you to Benedikt, the ultimate WhatsApp
-            assistant designed to make tracking your statistics easier and more
-            convenient than ever. Whether you're monitoring your message count,
-            tracking your media usage, or keeping tabs on your chat activity,
-            Benedikt is here to help you navigate the world of WhatsApp with
-            ease.
-          </p>
-          <p class="text-caption text-left">
-            Join the Benedikt community and take control of your WhatsApp
-            experience today! Get ready to discover new insights about your
-            messaging habits, set goals, and make the most of your WhatsApp
-            interactions.
-          </p>
-          <p class="text-caption text-left">
-            Simply upload, your WhatsApp chats, and let Benedikt do the rest.
-            It's time to take charge of your messaging journey. Welcome to the
-            world of Benedikt, where your stats are just a message away. Start
-            tracking, start achieving!
-          </p>
-          <q-btn rounded color="brand">Start now</q-btn>
-        </div>
-      </center>
+      <div class="Benedikt-title">
+        <p class="text-brand text-h4 q-mb-none text-bold">Benedikt</p>
+        <p class="text-h4 q-mb-none text-bold">
+          Your Personal WhatsApp Assistant for Tracking Stats!
+        </p>
+        <p class="text-caption text-left">
+          Detailed Stats, Historical Data, Privacy First, User-Friendly, Mobile
+          and Web, Share and Compare
+        </p>
+        <q-btn rounded color="brand" class="q-mr-sm">Start now</q-btn>
+        <q-btn flat rounded icon="play_circle">&#160 Watch Video Tutorial</q-btn>
+      </div>
     </div>
+   
     <div class="col-12 q-pa-md">
       <p class="text-h4 text-brand text-center text-bold">
         Why choose Benedikt?
