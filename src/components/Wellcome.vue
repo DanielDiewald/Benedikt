@@ -94,7 +94,7 @@
 </template>
 <style scoped>
 .my-card {
-  height: 150px;
+  height: 160px;
 }
 .Benedikt-title {
   max-width: 600px;
