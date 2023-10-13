@@ -80,7 +80,7 @@ export const useChatStore = defineStore('chat', {
           {
             label: 'Messages',
             backgroundColor: '#4caf50',
-            borderColor: '#1FE3ED',
+            borderColor: '#8bc34a',
             data,
           },
         ],
