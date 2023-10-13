@@ -27,10 +27,18 @@ async function handleUpload() {
 <template>
   <HowTo v-if="chatStore.messages == null"></HowTo>
   <BarChart v-if="chatStore.messages != null" />
+  <div class="q-ma-md">
+    <p class="text-h4 text-brand text-bold gt-sm">
+      <span class="ben-brand">Upload</span>
+    </p>
+    <p class="text-h6 text-brand q-mr-md text-bold lt-md">
+      <span class="ben-brand">Upload</span>
+    </p>
+  </div>
 
   <q-file
     style="backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"
-    class="fixed-bottom q-ma-lg"
+    class="q-ma-lg"
     rounded
     standout
     v-model="file"

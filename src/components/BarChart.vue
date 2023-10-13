@@ -1,16 +1,26 @@
 <template>
-  <Line
-    :data="chatStore.MessagesByYearAndMonth"
-    :options="options"
-    style="max-height: 50vh"
-    v-if="darkmode.darkmode == true"
-  />
-  <Line
-    :data="chatStore.MessagesByYearAndMonth"
-    :options="optionslight"
-    style="max-height: 50vh"
-    v-else
-  />
+  <div class="q-ma-md">
+    <p class="text-h4 text-brand text-bold gt-sm">
+      <span class="ben-brand">Messages by month</span>
+    </p>
+    <p class="text-h6 text-brand q-mr-md text-bold lt-md">
+      <span class="ben-brand">Messages by month</span>
+    </p>
+  </div>
+  <div class="q-ma-md">
+    <Line
+      :data="chatStore.MessagesByYearAndMonth"
+      :options="options"
+      style="max-height: 50vh"
+      v-if="darkmode.darkmode == true"
+    />
+    <Line
+      :data="chatStore.MessagesByYearAndMonth"
+      :options="optionslight"
+      style="max-height: 50vh"
+      v-else
+    />
+  </div>
 </template>
 
 <script setup>
@@ -52,8 +62,8 @@ const options = ref({
         color: color,
       },
       ticks: {
-        display: false,
-        color: color,
+        display: true,
+        color: lightcolor,
       },
     },
     y: {
@@ -77,8 +87,8 @@ const optionslight = ref({
         color: lightcolor,
       },
       ticks: {
-        display: false,
-        color: lightcolor,
+        display: true,
+        color: color,
       },
     },
     y: {
