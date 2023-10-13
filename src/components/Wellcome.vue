@@ -6,7 +6,7 @@
         <p class="text-h4 q-mb-none lt-lg text-bold gt-sm">
           Your Personal WhatsApp Assistant for Tracking Stats!
         </p>
-        <p class="text-brand gt-md text-h3 q-mb-none text-bold "><span class="ben-brand">Benedikt</span> 🦉</p>
+        <p class="text-brand gt-md text-h2 q-mb-none text-bold "><span class="ben-brand">Benedikt</span> 🦉</p>
         <p class="text-h3 gt-md q-mb-none text-bold gt-sm">
           Your Personal WhatsApp Assistant for Tracking Stats!
         </p>
@@ -108,6 +108,10 @@
           </q-card>
         </div>
       </div>
+    </div>
+    <div class="col-12 q-pa-md">
+    <p class="text-bold q-mb-none">Impressum</p>
+    <p class="text-caption" >Daniel Diewald | E-Mail: diewald.d02@htlwienwest.at</p>
     </div>
   </div>
 </template>

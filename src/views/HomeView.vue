@@ -14,6 +14,8 @@ import Wellcome from '../components/Wellcome.vue';
   background: linear-gradient(160deg, $light-green 0%, $green 40%) !important
 body.body--dark
   background: #111827
+body.body--light
+  color: $grey-10
 .q-card--dark
   background: #161f32 !important
 .q-card
