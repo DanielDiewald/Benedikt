@@ -4,7 +4,7 @@ import { defineStore } from 'pinia';
 export const useModeStore = defineStore('mode', {
   state: () => {
     return {
-      darkmode: useLocalStorage('darkmode', false),
+      darkmode: useLocalStorage('darkmode', false)
     };
   },
 });
