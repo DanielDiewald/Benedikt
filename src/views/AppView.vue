@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useChatStore } from '../stores/chat.js';
 import BarChart from '../components/BarChart.vue';
-import Wellcome from '../components/Wellcome.vue';
+import HowTo from '../components/HowTo.vue';
 
 const chatStore = useChatStore();
 const { messages } = storeToRefs(chatStore);
@@ -25,6 +25,7 @@ async function handleUpload() {
 </script>
 
 <template>
+  <HowTo></HowTo>
   <BarChart v-if="chatStore.messages != null" />
   <q-file
     rounded
@@ -42,22 +43,21 @@ async function handleUpload() {
     </template>
   </q-file>
   <div class="q-mt-md" v-if="chatStore.messages != null">
-    <div class="row">
-      <div>
+    <div class="row items-start">
+      <div class="col-4 col-lg-2">
         <q-item>
           <q-item-section avatar>
-            <q-icon color="brand" name="messages" />
+            <q-icon color="brand" name="message" />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ chatStore.totalMessages }}</q-item-label>
             <q-item-label caption lines="2" class="gt-xs"
-              >total messages</q-item-label
+              >messages</q-item-label
             ></q-item-section
           >
         </q-item>
       </div>
-      <q-separator vertical inset />
-      <div>
+      <div class="col-4 col-lg-2">
         <q-item>
           <q-item-section avatar>
             <q-icon color="brand" name="people" />
@@ -66,6 +66,58 @@ async function handleUpload() {
             <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
             <q-item-label caption lines="2" class="gt-xs"
               >people in chat</q-item-label
+            ></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="brand" name="description" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-xs"
+              >words</q-item-label
+            ></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="brand" name="image" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-xs"
+              >images</q-item-label
+            ></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="brand" name="movie" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-xs"
+              >videos</q-item-label
+            ></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="brand" name="mic" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-xs"
+              >voicemails</q-item-label
             ></q-item-section
           >
         </q-item>
