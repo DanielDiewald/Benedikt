@@ -7,12 +7,12 @@ export const useChatStore = defineStore('chat', {
     totalMessages: null,
     uniqueSenders: null,
     MessagesByYearAndMonth: {
-      labels: ['January', 'February', 'March'],
+      labels: null,
       datasets: [
         {
-          label: 'Data One',
-          backgroundColor: '#f87979',
-          data: [40, 20, 12],
+          label: null,
+          backgroundColor: null,
+          data: null,
         },
       ],
     },
@@ -80,6 +80,7 @@ export const useChatStore = defineStore('chat', {
           {
             label: 'Messages',
             backgroundColor: '#4caf50',
+            borderColor: '#1FE3ED',
             data,
           },
         ],
