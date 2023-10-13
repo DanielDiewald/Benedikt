@@ -1,11 +1,11 @@
 <script setup>
-import Welcome from '../components/Welcome.vue';
+import Wellcome from '../components/Wellcome.vue';
 </script>
 
 <template>
-  <Welcome class="q-ml-xl q-mr-xl gt-sm"></Welcome>
+  <Wellcome class="q-ml-xl q-mr-xl gt-sm"></Wellcome>
 
-  <Welcome class="lt-md"></Welcome>
+  <Wellcome class="lt-md"></Wellcome>
 </template>
 <style lang="sass">
 .text-brand
