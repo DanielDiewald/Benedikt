@@ -1,0 +1,121 @@
+<template>
+  <div class="row">
+    <div class="col-12 q-pa-md">
+      <center>
+        <div class="Benedikt-title text-center">
+          <p class="text-h1">🦉</p>
+          <p class="text-brand text-h4 q-mb-none text-bold">
+            Welcome to "Benedikt"
+          </p>
+          <p class="text-subtitle1 q-mt-none text-left q-mb-none">
+            Your Personal WhatsApp Assistant for Tracking Stats!
+          </p>
+          <p class="text-caption text-left">
+            We're thrilled to introduce you to Benedikt, the ultimate WhatsApp
+            assistant designed to make tracking your statistics easier and more
+            convenient than ever. Whether you're monitoring your message count,
+            tracking your media usage, or keeping tabs on your chat activity,
+            Benedikt is here to help you navigate the world of WhatsApp with
+            ease.
+          </p>
+          <p class="text-caption text-left">
+            Join the Benedikt community and take control of your WhatsApp
+            experience today! Get ready to discover new insights about your
+            messaging habits, set goals, and make the most of your WhatsApp
+            interactions.
+          </p>
+          <p class="text-caption text-left">
+            Simply upload, your WhatsApp chats, and let Benedikt do the rest.
+            It's time to take charge of your messaging journey. Welcome to the
+            world of Benedikt, where your stats are just a message away. Start
+            tracking, start achieving!
+          </p>
+          <q-btn rounded color="brand">Start now</q-btn>
+        </div>
+      </center>
+    </div>
+    <div class="col-12 q-pa-md">
+      <p class="text-h4 text-brand text-center text-bold">
+        Why choose Benedikt?
+      </p>
+      <div class="row items-start">
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+          <q-card class="my-card" flat>
+            <q-card-section>
+              <div class="text-h6">📈 Detailed Stats:</div>
+              <div class="text-subtitle2">
+                Get comprehensive insights into your WhatsApp usage, from the
+                number of messages sent and received to media files shared.
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+          <q-card class="my-card" flat>
+            <q-card-section>
+              <div class="text-h6">📅 Historical Data:</div>
+              <div class="text-subtitle2">
+                Keep a record of your stats over time, allowing you to visualize
+                trends and patterns in your messaging habits.
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+          <q-card class="my-card" flat>
+            <q-card-section>
+              <div class="text-h6">🔒 Privacy First</div>
+              <div class="text-subtitle2">
+                Your data is secure and private. Benedikt does not access your
+                messages or content, ensuring your WhatsApp conversations remain
+                confidential.
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+          <q-card class="my-card" flat>
+            <q-card-section>
+              <div class="text-h6">🌟 User-Friendly:</div>
+              <div class="text-subtitle2">
+                With an intuitive interface, Benedikt is incredibly easy to use.
+                Whether you're a tech enthusiast or a casual user, you'll find
+                tracking your WhatsApp stats a breeze.
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+          <q-card class="my-card" flat>
+            <q-card-section>
+              <div class="text-h6">📱 Mobile and Web:</div>
+              <div class="text-subtitle2">
+                Access Benedikt on both your mobile device and web browser,
+                providing flexibility and accessibility wherever you are.
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+          <q-card class="my-card" flat>
+            <q-card-section>
+              <div class="text-h6">👥 Share and Compare:</div>
+              <div class="text-subtitle2">
+                Share your achievements and stats with friends, and compare your
+                WhatsApp activity to see how you stack up.
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<style scoped>
+.my-card {
+  height: 150px;
+}
+.Benedikt-title {
+  max-width: 600px;
+}
+</style>

@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useChatStore } from '../stores/chat.js';
 import BarChart from '../components/BarChart.vue';
+import Wellcome from '../components/Wellcome.vue';
 
 const chatStore = useChatStore();
 const { messages } = storeToRefs(chatStore);
@@ -24,6 +25,7 @@ async function handleUpload() {
 </script>
 
 <template>
+  <Wellcome v-if="chatStore.messages == null"></Wellcome>
   <BarChart v-if="chatStore.messages != null" />
   <q-file
     rounded
