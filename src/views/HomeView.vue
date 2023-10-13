@@ -19,4 +19,8 @@ body.body--dark
 .q-card
   border-radius: 2rem
   background: $grey-2
+.ben-brand
+  background: linear-gradient(160deg, $light-green 0%, $green 40%)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
 </style>

@@ -18,7 +18,8 @@ function darkmodeswitch() {
   <div class="row">
     <div class="col">
       <p class="text-brand q-ml-md q-mt-lg">
-        <span>🦉</span> Benedikt | your WhatsApp assistant
+        <span>🦉</span>
+        <span class="ben-brand">Benedikt | your WhatsApp assistant</span>
       </p>
     </div>
     <div class="col-4 text-right">
@@ -28,8 +29,16 @@ function darkmodeswitch() {
         round
         @click="darkmodeswitch()"
       >
-        <q-icon v-if="$q.dark.isActive == false" name="dark_mode"></q-icon>
-        <q-icon v-if="$q.dark.isActive == true" name="light_mode"></q-icon
+        <q-icon
+          v-if="$q.dark.isActive == false"
+          name="dark_mode"
+          class="ben-brand"
+        ></q-icon>
+        <q-icon
+          v-if="$q.dark.isActive == true"
+          name="light_mode"
+          class="ben-brand"
+        ></q-icon
       ></q-btn>
     </div>
   </div>
