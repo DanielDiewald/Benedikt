@@ -7,7 +7,7 @@
       <span class="ben-brand">How to use Benedikt?</span>
     </p>
     <div class="row items-start">
-      <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+      <div class="col-12 col-sm-12 col-md-4 q-pa-sm">
         <q-card class="my-card" flat>
           <q-card-section>
             <div class="text-h6">📱 Export WhatsApp Chats</div>
@@ -20,7 +20,7 @@
           </q-card-section>
         </q-card>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+      <div class="col-12 col-sm-12 col-md-4 q-pa-sm">
         <q-card class="my-card" flat>
           <q-card-section>
             <div class="text-h6">📁 Receive the Chat File</div>
@@ -35,7 +35,7 @@
           </q-card-section>
         </q-card>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+      <div class="col-12 col-sm-12 col-md-4 q-pa-sm">
         <q-card class="my-card" flat>
           <q-card-section>
             <div class="text-h6">🏁 Import the Chat Text File</div>

@@ -17,14 +17,14 @@ function darkmodeswitch() {
 <template>
   <div class="row">
     <div class="col">
-      <q-btn rounded flat class="q-ml-md q-mt-md" to="/"
+      <q-btn size="sm" rounded flat class="q-ml-md q-mt-lg text-no-wrap" to="/"
         ><p class="text-brand q-mb-none">
           <span>🦉 </span>
           <span class="ben-brand">Benedikt | your WhatsApp assistant</span>
         </p></q-btn
       >
     </div>
-    <div class="col-4 text-right">
+    <div class="col-3 text-right">
       <q-btn
         class="q-mt-md q-mr-md text-brand"
         flat

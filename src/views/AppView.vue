@@ -30,6 +30,7 @@ async function handleUpload() {
   <br />
   <br />
   <q-file
+    style="backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"
     class="fixed-bottom q-ma-lg"
     rounded
     standout
