@@ -44,14 +44,9 @@ async function handleUpload() {
     v-model="file"
     accept=".txt"
     @update:model-value="handleUpload()"
-    label="_chat.txt"
+    label="upload chat as txt"
   >
     <template v-slot:prepend> <q-icon name="attach_file" /> </template>
-    <template v-slot:append>
-      <q-btn round dense flat icon="help"
-        ><q-tooltip>Tutorial</q-tooltip></q-btn
-      >
-    </template>
   </q-file>
   <div class="q-mt-md" v-if="chatStore.messages != null">
     <div class="row items-start">
