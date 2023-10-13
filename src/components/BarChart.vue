@@ -1,29 +1,31 @@
 <template>
-  <Bar :data="chatStore.MessagesByYearAndMonth" />
+  <Line :data="chatStore.MessagesByYearAndMonth" />
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { Bar, Line } from 'vue-chartjs';
+import { Line } from 'vue-chartjs';
 import { useChatStore } from '../stores/chat.js';
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
-  BarElement,
+  PointElement,
+  LineElement,
   CategoryScale,
   LinearScale,
 } from 'chart.js';
 
 ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-);
+  Legend
+)
 
 const chatStore = useChatStore();
 </script>
