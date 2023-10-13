@@ -1,22 +1,28 @@
 <template>
   <div class="row">
     <div class="col-12 q-pa-md">
-      <div class="Benedikt-title">
+      <div class="Benedikt-title q-pr-md q-pl-md">
         <p class="text-brand text-h4 q-mb-none text-bold">Benedikt 🦉</p>
-        <p class="text-h4 q-mb-none text-bold">
+        <p class="text-h4 q-mb-none text-bold gt-sm">
+          Your Personal WhatsApp Assistant for Tracking Stats!
+        </p>
+        <p class="text-h6 q-mb-none text-bold lt-md">
           Your Personal WhatsApp Assistant for Tracking Stats!
         </p>
         <p class="text-caption text-left">
           Detailed Stats, Historical Data, Privacy First, User-Friendly, Mobile
           and Web, Share and Compare
         </p>
-        <q-btn rounded color="brand" unelevated class="q-mr-sm" to="/app">Start now</q-btn>
-        <q-btn flat rounded icon="play_circle">&#160 Watch Video Tutorial</q-btn>
+        <q-btn size="sm" rounded color="brand" unelevated class="q-mr-sm" to="/app">Start now</q-btn>
+        <q-btn size="sm" flat rounded icon="play_circle">&#160 Watch Video Tutorial</q-btn>
       </div>
     </div>
    
     <div class="col-12 q-pa-md">
-      <p class="text-h4 text-brand text-center text-bold">
+      <p class="text-h4 text-brand text-center text-bold gt-sm">
+        Why choose Benedikt?
+      </p>
+      <p class="text-h6 text-brand q-ml-md q-mr-md text-bold lt-md">
         Why choose Benedikt?
       </p>
       <div class="row items-start">
