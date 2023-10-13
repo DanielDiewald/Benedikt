@@ -2,7 +2,21 @@ import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 
 export const useChatStore = defineStore('chat', {
-  state: () => ({ messages: null, totalMessages: null, uniqueSenders: null }),
+  state: () => ({
+    messages: null,
+    totalMessages: null,
+    uniqueSenders: null,
+    MessagesByYearAndMonth: {
+      labels: ['January', 'February', 'March'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 20, 12],
+        },
+      ],
+    },
+  }),
   actions: {
     async parseTextFile(text) {
       const regex = /\[(\d{2}.\d{2}.\d{2}, \d{2}:\d{2}:\d{2})\] ([^:]+): (.+)/g;
@@ -37,6 +51,39 @@ export const useChatStore = defineStore('chat', {
       });
 
       this.uniqueSenders = uniqueSenders.size;
+    },
+    async countMessagesByYearAndMonth(messageData) {
+      const messageCounts = {};
+
+      for (const message of messageData) {
+        const unixTime = message.unixTime;
+        const date = new Date(unixTime);
+        const year = date.getFullYear();
+        const month = date.toLocaleString('default', { month: 'long' });
+
+        // Create a unique key for year and month combination
+        const yearMonthKey = `${year} ${month}`;
+
+        if (!messageCounts[yearMonthKey]) {
+          messageCounts[yearMonthKey] = 0;
+        }
+
+        messageCounts[yearMonthKey]++;
+      }
+
+      const labels = Object.keys(messageCounts);
+      const data = Object.values(messageCounts);
+
+      this.MessagesByYearAndMonth = {
+        labels,
+        datasets: [
+          {
+            label: 'Messages',
+            backgroundColor: '#4caf50',
+            data,
+          },
+        ],
+      };
     },
   },
 });

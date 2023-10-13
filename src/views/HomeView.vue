@@ -2,10 +2,7 @@
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useChatStore } from '../stores/chat.js';
-
-const profile = ref(
-  'https://media.licdn.com/dms/image/C5603AQG94pk2yirIIg/profile-displayphoto-shrink_800_800/0/1615479527855?e=2147483647&v=beta&t=OuxDpxVu57gQzJdO-T-GeGCrHMyUgIaHkOMR3mgfyCY'
-);
+import BarChart from '../components/BarChart.vue';
 
 const chatStore = useChatStore();
 const { messages } = storeToRefs(chatStore);
@@ -21,11 +18,13 @@ async function handleUpload() {
     await chatStore.parseTextFile(text);
     console.log(chatStore.messages);
     await chatStore.countUniqueSenders(chatStore.messages);
+    await chatStore.countMessagesByYearAndMonth(chatStore.messages);
   }
 }
 </script>
 
 <template>
+  <BarChart v-if="chatStore.messages != null" />
   <q-file
     rounded
     standout
@@ -72,7 +71,6 @@ async function handleUpload() {
       </div>
     </div>
   </div>
-  {{ chatStore.messages }}
 </template>
 <style lang="sass">
 .text-brand
