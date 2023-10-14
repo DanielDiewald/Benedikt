@@ -109,9 +109,10 @@
         </div>
       </div>
     </div>
-    <div class="col-12 q-pa-md">
-    <p class="text-bold q-mb-none">Impressum</p>
-    <p class="text-caption" >Daniel Diewald | E-Mail: diewald.d02@htlwienwest.at</p>
+    <div class="col-12 q-pl-lg q-pr-lg">
+    
+    <p class="text-bold q-mb-none q-mt-sm">Impressum</p>
+    <p class="text-caption " >Daniel Diewald | E-Mail: diewald.d02@htlwienwest.at</p>
     </div>
   </div>
 </template>

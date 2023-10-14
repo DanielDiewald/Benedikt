@@ -3,6 +3,7 @@ import { defineStore } from 'pinia';
 
 export const useChatStore = defineStore('chat', {
   state: () => ({
+    wordscount: null,
     messages: null,
     totalMessages: null,
     uniqueSenders: null,
@@ -85,6 +86,20 @@ export const useChatStore = defineStore('chat', {
           },
         ],
       };
+    },
+    async extractWordsFromMessages(messageArray) {
+      const allWords = [];
+
+      messageArray.forEach((messageObj) => {
+        if (messageObj.message && typeof messageObj.message === 'string') {
+          // Split the message into words using spaces, and also consider other common punctuation marks
+          const words = messageObj.message.split(/\s+|\W+/);
+
+          // Filter out empty strings and add the words to the allWords array
+          allWords.push(...words.filter((word) => word.trim() !== ''));
+        }
+      });
+      this.wordscount = allWords.length;
     },
   },
 });

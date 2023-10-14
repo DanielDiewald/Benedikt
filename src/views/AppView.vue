@@ -20,6 +20,7 @@ async function handleUpload() {
     console.log(chatStore.messages);
     await chatStore.countUniqueSenders(chatStore.messages);
     await chatStore.countMessagesByYearAndMonth(chatStore.messages);
+    await chatStore.extractWordsFromMessages(chatStore.messages);
   }
 }
 </script>
@@ -82,7 +83,7 @@ async function handleUpload() {
             <q-icon color="brand" name="description" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label>{{ chatStore.wordscount }}</q-item-label>
             <q-item-label caption lines="2" class="gt-xs"
               >words</q-item-label
             ></q-item-section
