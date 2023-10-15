@@ -1,3 +1,7 @@
+<script setup>
+import { ref } from 'vue';
+const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensive insights into your WhatsApp usage, from the number of messages sent and received to files shared.'}, {title: '📅 Historical Data', description: 'Keep a record of your stats over time, allowing you to visualize trends and patterns in your messaging habits.'},{title: '🔒 Privacy First', description: "Your data is secure and private. Benedikt doesn't access your messages or content, ensuring your WhatsApp conversations remain confidential."},{title: '🌟 User-Friendly', description: "With an intuitive interface, Benedikt is incredibly easy to use. Whether you're a tech enthusiast or a casual user, you'll find tracking your stats a breeze."},{title: '📱 Mobile and Web', description: 'Access Benedikt on both your mobile device and web browser, providing flexibility and accessibility wherever you are.'},{title: '👥 Share and Compare', description: 'Share your achievements and stats with friends, and compare your WhatsApp activity to see how you stack up.'}, ])
+</script>
 <template>
   <div class="row">
     <div class="col-12 q-pa-md">
@@ -39,70 +43,52 @@
         <span class="ben-brand">Why choose Benedikt?</span>
       </p>
       <div class="row items-start">
-        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
-          <q-card class="my-card" flat>
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm sm" v-for="c in cards" v-bind:key="c.title">
+          <q-card class="my-card" flat style="min-height: 170px">
             <q-card-section>
-              <div class="text-h6">📈 Detailed Stats</div>
+              <div class="text-h6">{{c.title}}</div>
               <div class="text-subtitle2 text-weight-light">
-                Get comprehensive insights into your WhatsApp usage, from the
-                number of messages sent and received to files shared. 
+                {{c.description}}
               </div>
             </q-card-section>
           </q-card>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
-          <q-card class="my-card" flat>
+         <div class="col-12 col-sm-6 col-md-4 q-pa-sm md" v-for="c in cards" v-bind:key="c.title">
+          <q-card class="my-card" flat style="min-height: 175px">
             <q-card-section>
-              <div class="text-h6">📅 Historical Data</div>
+              <div class="text-h6">{{c.title}}</div>
               <div class="text-subtitle2 text-weight-light">
-                Keep a record of your stats over time, allowing you to visualize
-                trends and patterns in your messaging habits.
+                {{c.description}}
               </div>
             </q-card-section>
           </q-card>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
-          <q-card class="my-card" flat>
+         <div class="col-12 col-sm-6 col-md-4 q-pa-sm lg" v-for="c in cards" v-bind:key="c.title">
+          <q-card class="my-card" flat style="min-height: 150px">
             <q-card-section>
-              <div class="text-h6">🔒 Privacy First</div>
+              <div class="text-h6">{{c.title}}</div>
               <div class="text-subtitle2 text-weight-light">
-                Your data is secure and private. Benedikt doesn't access your
-                messages or content, ensuring your WhatsApp conversations remain
-                confidential. 
+                {{c.description}}
               </div>
             </q-card-section>
           </q-card>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
-          <q-card class="my-card highcard" flat>
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm xl" v-for="c in cards" v-bind:key="c.title">
+          <q-card class="my-card q-pa-md" flat >
             <q-card-section>
-              <div class="text-h6">🌟 User-Friendly</div>
+              <div class="text-h6">{{c.title}}</div>
               <div class="text-subtitle2 text-weight-light">
-                With an intuitive interface, Benedikt is incredibly easy to use.
-                Whether you're a tech enthusiast or a casual user, you'll find
-                tracking your stats a breeze.
+                {{c.description}}
               </div>
             </q-card-section>
           </q-card>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm xs" v-for="c in cards" v-bind:key="c.title">
           <q-card class="my-card" flat>
             <q-card-section>
-              <div class="text-h6">📱 Mobile and Web</div>
+              <div class="text-h6">{{c.title}}</div>
               <div class="text-subtitle2 text-weight-light">
-                Access Benedikt on both your mobile device and web browser,
-                providing flexibility and accessibility wherever you are. 
-              </div>
-            </q-card-section>
-          </q-card>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 q-pa-sm">
-          <q-card class="my-card" flat>
-            <q-card-section>
-              <div class="text-h6">👥 Share and Compare</div>
-              <div class="text-subtitle2 text-weight-light">
-                Share your achievements and stats with friends, and compare your
-                WhatsApp activity to see how you stack up. 
+                {{c.description}}
               </div>
             </q-card-section>
           </q-card>
@@ -117,8 +103,6 @@
   </div>
 </template>
 <style scoped lang="sass">
-.my-card 
-  min-height: 170px
 .Benedikt-title 
   max-width: 600px
 
