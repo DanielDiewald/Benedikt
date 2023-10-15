@@ -43,8 +43,12 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
         <span class="ben-brand">Why choose Benedikt?</span>
       </p>
       <div class="row items-start">
-        <div class="col-12 col-sm-6 col-md-4 q-pa-sm sm" v-for="c in cards" v-bind:key="c.title">
-          <q-card class="my-card" flat style="min-height: 170px">
+      <q-intersection
+        v-for="c in cards" v-bind:key="c.title"
+        transition="scale"
+        class="example-item"
+      ><div class="col-12 col-sm-6 col-md-4 q-pa-sm xs" >
+          <q-card class="my-card" flat >
             <q-card-section>
               <div class="text-h6">{{c.title}}</div>
               <div class="text-subtitle2 text-weight-light">
@@ -52,7 +56,8 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
               </div>
             </q-card-section>
           </q-card>
-        </div>
+        </div></q-intersection>
+        
          <div class="col-12 col-sm-6 col-md-4 q-pa-sm md" v-for="c in cards" v-bind:key="c.title">
           <q-card class="my-card" flat style="min-height: 175px">
             <q-card-section>
@@ -83,8 +88,8 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
             </q-card-section>
           </q-card>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 q-pa-sm xs" v-for="c in cards" v-bind:key="c.title">
-          <q-card class="my-card" flat>
+        <div class="col-12 col-sm-6 col-md-4 q-pa-sm sm" v-for="c in cards" v-bind:key="c.title">
+          <q-card class="my-card" flat style="min-height: 170px">
             <q-card-section>
               <div class="text-h6">{{c.title}}</div>
               <div class="text-subtitle2 text-weight-light">

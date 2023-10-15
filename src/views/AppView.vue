@@ -54,7 +54,7 @@ async function handleUpload() {
       <div class="col-4 col-lg-2">
         <q-item>
           <q-item-section avatar>
-            <q-icon color="brand" name="message" />
+            <q-icon color="brand" class="ben-brand" name="message" />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ chatStore.totalMessages }}</q-item-label>
@@ -80,7 +80,7 @@ async function handleUpload() {
       <div class="col-4 col-lg-2">
         <q-item>
           <q-item-section avatar>
-            <q-icon color="brand" name="description" />
+            <q-icon color="brand" class="ben-brand" name="description" />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ chatStore.wordscount }}</q-item-label>
@@ -93,7 +93,7 @@ async function handleUpload() {
       <div class="col-4 col-lg-2">
         <q-item>
           <q-item-section avatar>
-            <q-icon color="brand" name="image" />
+            <q-icon color="brand" class="ben-brand" name="image" />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
@@ -106,7 +106,7 @@ async function handleUpload() {
       <div class="col-4 col-lg-2">
         <q-item>
           <q-item-section avatar>
-            <q-icon color="brand" name="movie" />
+            <q-icon color="brand" class="ben-brand" name="movie" />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
@@ -119,7 +119,7 @@ async function handleUpload() {
       <div class="col-4 col-lg-2">
         <q-item>
           <q-item-section avatar>
-            <q-icon color="brand" name="mic" />
+            <q-icon color="brand" class="ben-brand" name="mic" />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
