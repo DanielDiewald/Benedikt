@@ -36,7 +36,10 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
     </div>
    
     <div class="col-12 q-pa-md">
-      <p class="text-h4 text-brand q-ml-md text-bold gt-sm">
+    <p class="text-h4 text-brand q-ml-md text-bold xl">
+      <span class="ben-brand">Why choose Benedikt?</span>
+      </p>
+      <p class="text-h4 text-brand q-ml-md text-bold gt-sm lt-xl">
       <span class="ben-brand">Why choose Benedikt?</span>
       </p>
       <p class="text-h6 text-brand q-ml-md q-mr-md text-bold lt-md">
@@ -79,10 +82,10 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
           </q-card>
         </div>
         <div class="col-12 col-sm-6 col-md-4 q-pa-sm xl" v-for="c in cards" v-bind:key="c.title">
-          <q-card class="my-card q-pa-md" flat >
+          <q-card class="my-card q-pa-xl" flat style="height: 220px">
             <q-card-section>
-              <div class="text-h6">{{c.title}}</div>
-              <div class="text-subtitle2 text-weight-light">
+              <div class="text-h4">{{c.title}}</div>
+              <div class="text-body1 ">
                 {{c.description}}
               </div>
             </q-card-section>
