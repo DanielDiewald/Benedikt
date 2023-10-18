@@ -9,13 +9,13 @@
   </div>
   <div class="q-ma-md">
     <Line
-      :data="chatStore.MessagesByYearAndMonth"
+      :data="chatStore.MessagesByYearAndMonthExtended"
       :options="options"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == true"
     />
     <Line
-      :data="chatStore.MessagesByYearAndMonth"
+      :data="chatStore.MessagesByYearAndMonthExtended"
       :options="optionslight"
       style="max-height: 50vh"
       v-else

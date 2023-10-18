@@ -17,6 +17,16 @@ export const useChatStore = defineStore('chat', {
         },
       ],
     },
+    MessagesByYearAndMonthExtended: {
+      labels: null,
+      datasets: [
+        {
+          label: null,
+          backgroundColor: null,
+          data: null,
+        },
+      ],
+    },
   }),
   actions: {
     async parseTextFile(text) {
@@ -74,7 +84,8 @@ export const useChatStore = defineStore('chat', {
 
       const labels = Object.keys(messageCounts);
       const data = Object.values(messageCounts);
-
+      console.log(data);
+      console.log(labels);
       this.MessagesByYearAndMonth = {
         labels,
         datasets: [
@@ -83,6 +94,92 @@ export const useChatStore = defineStore('chat', {
             backgroundColor: '#4caf50',
             borderColor: '#8bc34a',
             data,
+          },
+        ],
+      };
+    },
+    async countMessagesByYearAndMonthExtended(messages) {
+      const messageCounts = {};
+
+      for (const message of messages) {
+        const date = new Date(message.unixTime);
+        const monthYear = `${date.getFullYear()}-${(date.getMonth() + 1)
+          .toString()
+          .padStart(2, '0')}`;
+
+        if (!messageCounts[message.sender]) {
+          messageCounts[message.sender] = [];
+        }
+
+        if (!messageCounts[message.sender][monthYear]) {
+          messageCounts[message.sender][monthYear] = 1;
+        } else {
+          messageCounts[message.sender][monthYear]++;
+        }
+      }
+
+      const result = [];
+      const totalMessagesPerMonth = {};
+
+      // Calculate the total messages per month for all senders
+      for (const sender in messageCounts) {
+        for (const monthYear in messageCounts[sender]) {
+          if (!totalMessagesPerMonth[monthYear]) {
+            totalMessagesPerMonth[monthYear] = messageCounts[sender][monthYear];
+          } else {
+            totalMessagesPerMonth[monthYear] +=
+              messageCounts[sender][monthYear];
+          }
+        }
+      }
+
+      result.push({
+        sendername: 'Total',
+        total: Object.values(totalMessagesPerMonth),
+        totalmessages: Object.values(totalMessagesPerMonth).reduce(
+          (acc, count) => acc + count,
+          0
+        ),
+      });
+
+      // Create objects for each sender with message counts per month
+      for (const sender in messageCounts) {
+        const messageCountPerMonth = Object.values(messageCounts[sender]);
+        const senderObj = {
+          sendername: sender,
+          total: messageCountPerMonth,
+          totalmessages: messageCountPerMonth.reduce(
+            (acc, count) => acc + count,
+            0
+          ),
+        };
+        result.push(senderObj);
+      }
+
+      // Create an array of month-year values
+      const labels = Object.keys(totalMessagesPerMonth);
+      const data = Object.values(result[0].total);
+
+      this.MessagesByYearAndMonthExtended = {
+        labels,
+        datasets: [
+          {
+            label: 'Messages',
+            backgroundColor: '#4caf50',
+            borderColor: '#8bc34a',
+            data,
+          },
+          {
+            label: result[1].sendername,
+            backgroundColor: '#4c86af',
+            borderColor: '#8bc34a00',
+            data: Object.values(result[1].total),
+          },
+          {
+            label: result[2].sendername,
+            backgroundColor: '#af4c58',
+            borderColor: '#8bc34a00',
+            data: Object.values(result[2].total),
           },
         ],
       };

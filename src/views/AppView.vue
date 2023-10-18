@@ -20,6 +20,7 @@ async function handleUpload() {
     console.log(chatStore.messages);
     await chatStore.countUniqueSenders(chatStore.messages);
     await chatStore.countMessagesByYearAndMonth(chatStore.messages);
+    await chatStore.countMessagesByYearAndMonthExtended(chatStore.messages);
     await chatStore.extractWordsFromMessages(chatStore.messages);
   }
 }
