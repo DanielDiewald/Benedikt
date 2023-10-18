@@ -7,18 +7,72 @@
       <span class="ben-brand">Messages by month</span>
     </p>
   </div>
+  <div>
+    <q-btn
+      icon="circle"
+      flat
+      color="brand"
+      class="text-lowercase"
+      rounded
+      @click="selectedchart = null"
+      >&#160 Total messages</q-btn
+    >
+    <q-btn
+      flat
+      icon="circle"
+      color="primary"
+      class="text-capitalize"
+      rounded
+      @click="selectedchart = 1"
+      >&#160  {{chatStore.MessagesByYearAndMonthPerson1.datasets[0].label}}</q-btn
+    >
+    
+    <q-btn
+      flat
+      icon="circle"
+      color="secondary"
+      class="text-capitalize"
+      rounded
+      @click="selectedchart = 2"
+      >&#160  {{chatStore.MessagesByYearAndMonthPerson2.datasets[0].label}}</q-btn
+    >
+  </div>
   <div class="q-ma-md">
     <Line
       :data="chatStore.MessagesByYearAndMonthExtended"
       :options="options"
       style="max-height: 50vh"
-      v-if="darkmode.darkmode == true"
+      v-if="darkmode.darkmode == true && selectedchart == null"
+    />
+    <Line
+      :data="chatStore.MessagesByYearAndMonthPerson1"
+      :options="options"
+      style="max-height: 50vh"
+      v-if="darkmode.darkmode == true && selectedchart == 1"
+    />
+    <Line
+      :data="chatStore.MessagesByYearAndMonthPerson2"
+      :options="options"
+      style="max-height: 50vh"
+      v-if="darkmode.darkmode == true && selectedchart == 2"
     />
     <Line
       :data="chatStore.MessagesByYearAndMonthExtended"
       :options="optionslight"
       style="max-height: 50vh"
-      v-else
+      v-if="darkmode.darkmode == false && selectedchart == null"
+    />
+    <Line
+      :data="chatStore.MessagesByYearAndMonthPerson1"
+      :options="optionslight"
+      style="max-height: 50vh"
+      v-if="darkmode.darkmode == false && selectedchart == 1"
+    />
+    <Line
+      :data="chatStore.MessagesByYearAndMonthPerson2"
+      :options="optionslight"
+      style="max-height: 50vh"
+      v-if="darkmode.darkmode == false && selectedchart == 2"
     />
   </div>
 </template>
@@ -50,6 +104,7 @@ ChartJS.register(
   Legend
 );
 
+const selectedchart = ref(null);
 const color = ref('#161f32');
 const lightcolor = ref('#f5f5f5');
 

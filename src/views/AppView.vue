@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useChatStore } from '../stores/chat.js';
-import BarChart from '../components/BarChart.vue';
+import LineChart from '../components/LineChart.vue';
 import HowTo from '../components/HowTo.vue';
 
 const chatStore = useChatStore();
@@ -28,7 +28,7 @@ async function handleUpload() {
 
 <template>
   <HowTo v-if="chatStore.messages == null"></HowTo>
-  <BarChart v-if="chatStore.messages != null" />
+  <LineChart v-if="chatStore.messages != null" />
   <div class="q-ma-md">
     <p class="text-h4 text-brand text-bold gt-sm">
       <span class="ben-brand">Upload</span>

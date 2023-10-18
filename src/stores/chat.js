@@ -7,6 +7,26 @@ export const useChatStore = defineStore('chat', {
     messages: null,
     totalMessages: null,
     uniqueSenders: null,
+    MessagesByYearAndMonthPerson1: {
+      labels: null,
+      datasets: [
+        {
+          label: null,
+          backgroundColor: null,
+          data: null,
+        },
+      ],
+    },
+    MessagesByYearAndMonthPerson2: {
+      labels: null,
+      datasets: [
+        {
+          label: null,
+          backgroundColor: null,
+          data: null,
+        },
+      ],
+    },
     MessagesByYearAndMonth: {
       labels: null,
       datasets: [
@@ -159,7 +179,28 @@ export const useChatStore = defineStore('chat', {
       // Create an array of month-year values
       const labels = Object.keys(totalMessagesPerMonth);
       const data = Object.values(result[0].total);
-
+      this.MessagesByYearAndMonthPerson1 = {
+        labels,
+        datasets: [
+          {
+            label: result[1].sendername,
+            backgroundColor: '#4c86af',
+            borderColor: '#5ba2d4',
+            data: Object.values(result[1].total),
+          },
+        ],
+      };
+      this.MessagesByYearAndMonthPerson2 = {
+        labels,
+        datasets: [
+          {
+            label: result[2].sendername,
+            backgroundColor: '#af4c58',
+            borderColor: '#c95764',
+            data: Object.values(result[2].total),
+          },
+        ],
+      };
       this.MessagesByYearAndMonthExtended = {
         labels,
         datasets: [
