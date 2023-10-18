@@ -71,7 +71,7 @@ export const useChatStore = defineStore('chat', {
         messages.push({ unixTime, sender, message });
       }
 
-      this.messages = messages;
+      this.messages = messages.slice(1);
       this.totalMessages = messages.length;
     },
     async countUniqueSenders(text) {

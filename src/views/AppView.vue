@@ -8,7 +8,13 @@ import HowTo from '../components/HowTo.vue';
 const chatStore = useChatStore();
 const { messages } = storeToRefs(chatStore);
 const file = ref(null);
-
+function sumArray(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum;
+}
 async function handleUpload() {
   console.log('handleUpload is triggered');
   let text;
@@ -29,6 +35,53 @@ async function handleUpload() {
 <template>
   <HowTo v-if="chatStore.messages == null"></HowTo>
   <LineChart v-if="chatStore.messages != null" />
+  <div class="q-mt-md" v-if="chatStore.messages != null">
+    <div class="row items-start">
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="brand" class="ben-brand" name="message" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.totalMessages }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-sm"
+              >messages</q-item-label
+            ></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="primary" name="message" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{
+              sumArray(chatStore.MessagesByYearAndMonthPerson1.datasets[0].data)
+            }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-sm">{{
+              chatStore.MessagesByYearAndMonthPerson1.datasets[0].label
+            }}</q-item-label></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="secondary" name="message" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{
+              sumArray(chatStore.MessagesByYearAndMonthPerson2.datasets[0].data)
+            }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-sm">{{
+              chatStore.MessagesByYearAndMonthPerson2.datasets[0].label
+            }}</q-item-label></q-item-section
+          >
+        </q-item>
+      </div>
+    </div>
+  </div>
   <div class="q-ma-md">
     <p class="text-h4 text-brand text-bold gt-sm">
       <span class="ben-brand">Upload</span>
