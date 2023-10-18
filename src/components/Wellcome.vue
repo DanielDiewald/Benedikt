@@ -6,11 +6,11 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
   <div class="row">
     <div class="col-12 q-pa-md">
       <div class="Benedikt-title q-pr-md q-pl-md">
-        <p class="text-brand text-h4 lt-lg q-mb-none text-bold "><span class="ben-brand">Benedikt</span> 🦉</p>
+        <p class="text-brand text-h4 lt-lg q-mb-none text-bold "><span class="ben-brand text-uppercase">Benedikt</span> 🦉</p>
         <p class="text-h4 q-mb-none lt-lg text-bold gt-sm">
           Your Personal WhatsApp Assistant for Tracking Stats!
         </p>
-        <p class="text-brand gt-md text-h2 q-mb-none text-bold "><span class="ben-brand">Benedikt</span> 🦉</p>
+        <p class="text-brand gt-md text-h2 q-mb-none text-bold "><span class="ben-brand text-uppercase">Benedikt</span> 🦉</p>
         <p class="text-h3 gt-md q-mb-none text-bold gt-sm">
           Your Personal WhatsApp Assistant for Tracking Stats!
         </p>
@@ -27,10 +27,10 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
         </p>
         <div class="lt-sm">
         <q-btn size="sm" rounded color="brand" unelevated class="q-mr-sm" to="/app">Start now</q-btn>
-        <q-btn size="sm" flat rounded icon="play_circle">&#160 Watch Video Tutorial</q-btn></div>
+        <q-btn size="sm" flat rounded disabled icon="play_circle">&#160 Watch Video Tutorial</q-btn></div>
         <div class="gt-xs">
         <q-btn size="md" rounded color="brand" unelevated class="q-mr-sm" to="/app">Start now</q-btn>
-        <q-btn size="md" flat rounded icon="play_circle">&#160 Watch Video Tutorial</q-btn></div>
+        <q-btn size="md" flat rounded disabled icon="play_circle">&#160 Watch Video Tutorial</q-btn></div>
       </div>
       
     </div>
@@ -47,11 +47,10 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
       </p>
       <div class="row items-start">
       <q-intersection
-        v-for="c in cards" v-bind:key="c.title"
         transition="scale"
         class="example-item"
-      ><div class="col-12 col-sm-6 col-md-4 q-pa-sm xs" >
-          <q-card class="my-card" flat >
+      ><div v-for="c in cards" v-bind:key="c.title" class="col-12 col-sm-6 col-md-4 q-pa-sm xs" >
+          <q-card class="my-card q-pa-sm" flat >
             <q-card-section>
               <div class="text-h6">{{c.title}}</div>
               <div class="text-subtitle2 text-weight-light">

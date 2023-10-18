@@ -58,6 +58,7 @@ export const useChatStore = defineStore('chat', {
       }
       return sum;
     },
+    //#region parseTextFile
     async parseTextFile(text) {
       const regex = /\[(\d{2}.\d{2}.\d{2}, \d{2}:\d{2}:\d{2})\] ([^:]+): (.+)/g;
       const messages = [];
@@ -83,6 +84,8 @@ export const useChatStore = defineStore('chat', {
       this.messages = messages.slice(1);
       this.totalMessages = messages.length;
     },
+    //#endregion
+
     async countUniqueSenders(text) {
       const uniqueSenders = new Set();
 
@@ -209,6 +212,17 @@ export const useChatStore = defineStore('chat', {
             backgroundColor: '#af4c58',
             borderColor: '#c95764',
             data: Object.values(result[2].total),
+          },
+        ],
+      };
+      this.MessagesByYearAndMonth = {
+        labels,
+        datasets: [
+          {
+            label: 'Messages',
+            backgroundColor: '#4caf50',
+            borderColor: '#8bc34a',
+            data,
           },
         ],
       };

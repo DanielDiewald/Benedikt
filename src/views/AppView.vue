@@ -19,7 +19,6 @@ async function handleUpload() {
     await chatStore.parseTextFile(text);
     console.log(chatStore.messages);
     await chatStore.countUniqueSenders(chatStore.messages);
-    await chatStore.countMessagesByYearAndMonth(chatStore.messages);
     await chatStore.countMessagesByYearAndMonthExtended(chatStore.messages);
     await chatStore.extractWordsFromMessages(chatStore.messages);
   }
@@ -27,7 +26,48 @@ async function handleUpload() {
 </script>
 
 <template>
+  <div class="q-ma-md">
+    <p class="text-h4 text-brand text-bold gt-sm">
+      <span class="ben-brand">Upload</span>
+    </p>
+    <p class="text-h6 text-brand q-mr-md text-bold lt-md">
+      <span class="ben-brand">Upload</span>
+    </p>
+  </div>
+  <q-file
+    style="backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"
+    class="q-ma-md"
+    rounded
+    standout
+    v-model="file"
+    accept=".txt"
+    @update:model-value="handleUpload()"
+    label="upload chat as txt"
+  >
+    <template v-slot:prepend> <q-icon name="attach_file" /> </template>
+  </q-file>
+
   <HowTo v-if="chatStore.messages == null"></HowTo>
+  <div class="q-ml-md q-mr-md q-mb-lg q-mt-lg" v-if="chatStore.messages != null">
+    <p class="text-h4 text-brand text-bold gt-sm q-mb-none">
+      <span class="ben-brand"
+        >Chat between &#160</span>
+        <span >
+        {{ chatStore.MessagesByYearAndMonthPerson1.datasets[0].label }} </span>
+        <span class="ben-brand">&#160 & &#160</span>
+        <span n class="text-secondary">
+        {{ chatStore.MessagesByYearAndMonthPerson2.datasets[0].label }}</span> 
+    </p>
+    <p class="text-h6 text-brand q-mr-md text-bold lt-md q-mb-none">
+      <span 
+        >Chat between &#160</span>
+        <span >
+        {{ chatStore.MessagesByYearAndMonthPerson1.datasets[0].label }} </span>
+        <span class="ben-brand">&#160 & &#160</span>
+        <span >
+        {{ chatStore.MessagesByYearAndMonthPerson2.datasets[0].label }}</span> 
+    </p>
+  </div>
   <LineChart v-if="chatStore.messages != null" />
   <div class="q-mt-md" v-if="chatStore.messages != null">
     <div class="row items-start">
@@ -72,27 +112,7 @@ async function handleUpload() {
       </div>
     </div>
   </div>
-  <div class="q-ma-md">
-    <p class="text-h4 text-brand text-bold gt-sm">
-      <span class="ben-brand">Upload</span>
-    </p>
-    <p class="text-h6 text-brand q-mr-md text-bold lt-md">
-      <span class="ben-brand">Upload</span>
-    </p>
-  </div>
 
-  <q-file
-    style="backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"
-    class="q-ma-lg"
-    rounded
-    standout
-    v-model="file"
-    accept=".txt"
-    @update:model-value="handleUpload()"
-    label="upload chat as txt"
-  >
-    <template v-slot:prepend> <q-icon name="attach_file" /> </template>
-  </q-file>
   <div class="q-mt-md" v-if="chatStore.messages != null">
     <div class="row items-start">
       <div class="col-4 col-lg-2">

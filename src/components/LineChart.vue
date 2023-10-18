@@ -1,12 +1,4 @@
 <template>
-  <div class="q-ma-md">
-    <p class="text-h4 text-brand text-bold gt-sm">
-      <span class="ben-brand">Messages by month</span>
-    </p>
-    <p class="text-h6 text-brand q-mr-md text-bold lt-md">
-      <span class="ben-brand">Messages by month</span>
-    </p>
-  </div>
   <div>
     <q-btn
       icon="circle"
