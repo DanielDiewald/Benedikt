@@ -6,6 +6,8 @@ export const useChatStore = defineStore('chat', {
     wordscount: null,
     messages: null,
     totalMessages: null,
+    totalMessagesPerson1: null,
+    totalMessagesPerson2: null,
     uniqueSenders: null,
     MessagesByYearAndMonthPerson1: {
       labels: null,
@@ -49,6 +51,13 @@ export const useChatStore = defineStore('chat', {
     },
   }),
   actions: {
+    sumArray(arr) {
+      let sum = 0;
+      for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+      }
+      return sum;
+    },
     async parseTextFile(text) {
       const regex = /\[(\d{2}.\d{2}.\d{2}, \d{2}:\d{2}:\d{2})\] ([^:]+): (.+)/g;
       const messages = [];
@@ -179,6 +188,8 @@ export const useChatStore = defineStore('chat', {
       // Create an array of month-year values
       const labels = Object.keys(totalMessagesPerMonth);
       const data = Object.values(result[0].total);
+      this.totalMessagesPerson1 = this.sumArray(Object.values(result[1].total));
+      this.totalMessagesPerson2 = this.sumArray(Object.values(result[2].total));
       this.MessagesByYearAndMonthPerson1 = {
         labels,
         datasets: [

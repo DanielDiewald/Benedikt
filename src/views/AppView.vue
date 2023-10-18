@@ -8,13 +8,7 @@ import HowTo from '../components/HowTo.vue';
 const chatStore = useChatStore();
 const { messages } = storeToRefs(chatStore);
 const file = ref(null);
-function sumArray(arr) {
-  let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
-  }
-  return sum;
-}
+
 async function handleUpload() {
   console.log('handleUpload is triggered');
   let text;
@@ -56,9 +50,7 @@ async function handleUpload() {
             <q-icon color="primary" name="message" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{
-              sumArray(chatStore.MessagesByYearAndMonthPerson1.datasets[0].data)
-            }}</q-item-label>
+            <q-item-label>{{ chatStore.totalMessagesPerson1 }}</q-item-label>
             <q-item-label caption lines="2" class="gt-sm">{{
               chatStore.MessagesByYearAndMonthPerson1.datasets[0].label
             }}</q-item-label></q-item-section
@@ -71,9 +63,7 @@ async function handleUpload() {
             <q-icon color="secondary" name="message" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{
-              sumArray(chatStore.MessagesByYearAndMonthPerson2.datasets[0].data)
-            }}</q-item-label>
+            <q-item-label>{{ chatStore.totalMessagesPerson2 }}</q-item-label>
             <q-item-label caption lines="2" class="gt-sm">{{
               chatStore.MessagesByYearAndMonthPerson2.datasets[0].label
             }}</q-item-label></q-item-section
