@@ -55,6 +55,25 @@ export const useChatStore = defineStore('chat', {
     },
   }),
   actions: {
+    mergeAndSumArrays(arr1, arr2) {
+      const resultObj = {};
+
+      for (let i = 0; i < arr2.length; i++) {
+        const month = arr2[i];
+        const value = arr1[i];
+
+        if (resultObj[month]) {
+          resultObj[month] += value;
+        } else {
+          resultObj[month] = value;
+        }
+      }
+
+      const mergedArray1 = Object.values(resultObj);
+      const mergedArray2 = Object.keys(resultObj);
+
+      return [mergedArray1, mergedArray2];
+    },
     fillMissingDatesAndReturnMonths(values, dateStrings) {
       const dates = dateStrings.map((dateString) => new Date(dateString));
       const result = [];
@@ -90,13 +109,16 @@ export const useChatStore = defineStore('chat', {
         );
         currentDate.setMonth(currentDate.getMonth() + 1);
       }
-      this.labels = months;
+
       const modifiedArray = result.map((element) => {
         return element === undefined ? 0 : element;
       });
-      console.log(modifiedArray);
-      console.log(months);
-      return modifiedArray;
+      const [mergedValues, mergedMonths] = this.mergeAndSumArrays(
+        modifiedArray,
+        months
+      );
+      this.labels = mergedMonths;
+      return mergedValues;
     },
     sumArray(arr) {
       let sum = 0;
