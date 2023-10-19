@@ -95,16 +95,13 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
+console.log(LineElement);
 const selectedchart = ref(null);
 const color = ref('#161f32');
 const lightcolor = ref('#f5f5f5');
 
 const options = ref({
   responsive: true,
-  line: {
-    spanGaps: true,
-  },
   scales: {
     x: {
       grid: {
@@ -126,6 +123,14 @@ const options = ref({
     legend: {
       display: false,
     }
+  },
+  
+  elements: {
+    line: {
+      spanGaps: false, // Add this line to disable spanning gaps
+      borderCapStyle: 'round',
+      tension: 0.4,
+    },
   },
 });
 const optionslight = ref({
@@ -151,6 +156,14 @@ const optionslight = ref({
     legend: {
       display: false,
     }
+  },
+  
+  elements: {
+    line: {
+      spanGaps: false, // Add this line to disable spanning gaps
+      borderCapStyle: 'round',
+      tension: 0.4,
+    },
   },
 });
 const chatStore = useChatStore();

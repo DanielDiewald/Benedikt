@@ -84,7 +84,7 @@ export const useChatStore = defineStore('chat', {
         const date = dates[i];
 
         while (currentDate < date) {
-          result.push(0);
+          result.push(NaN);
           months.push(
             `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
               .toString()
@@ -101,7 +101,7 @@ export const useChatStore = defineStore('chat', {
       // Fill in dates up to the current month if not present
       const today = new Date();
       while (currentDate <= today) {
-        result.push(0);
+        result.push(NaN);
         months.push(
           `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
             .toString()
@@ -111,7 +111,7 @@ export const useChatStore = defineStore('chat', {
       }
 
       const modifiedArray = result.map((element) => {
-        return element === undefined ? 0 : element;
+        return element === undefined ? NaN : element;
       });
       const [mergedValues, mergedMonths] = this.mergeAndSumArrays(
         modifiedArray,
@@ -185,8 +185,6 @@ export const useChatStore = defineStore('chat', {
 
       const labels = Object.keys(messageCounts);
       const data = Object.values(messageCounts);
-      console.log(data);
-      console.log(labels);
       this.MessagesByYearAndMonth = {
         labels,
         datasets: [
@@ -270,8 +268,8 @@ export const useChatStore = defineStore('chat', {
         result[2].total,
         oldlabels
       );
+      console.log(data2);
 
-      console.log(data + labels);
       this.totalMessagesPerson1 = this.sumArray(Object.values(result[1].total));
 
       this.totalMessagesPerson2 = this.sumArray(Object.values(result[2].total));
