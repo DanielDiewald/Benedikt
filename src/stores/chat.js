@@ -3,11 +3,15 @@ import { defineStore } from 'pinia';
 
 export const useChatStore = defineStore('chat', {
   state: () => ({
+    labels: null,
     wordscount: null,
     messages: null,
     totalMessages: null,
+    avargeMessages: null,
     totalMessagesPerson1: null,
+    avargeMessagesPerson1: null,
     totalMessagesPerson2: null,
+    avargeMessagesPerson2: null,
     uniqueSenders: null,
     MessagesByYearAndMonthPerson1: {
       labels: null,
@@ -51,6 +55,49 @@ export const useChatStore = defineStore('chat', {
     },
   }),
   actions: {
+    fillMissingDatesAndReturnMonths(values, dateStrings) {
+      const dates = dateStrings.map((dateString) => new Date(dateString));
+      const result = [];
+      const months = [];
+      let currentDate = new Date(dates[0]);
+
+      for (let i = 0; i < dates.length; i++) {
+        const date = dates[i];
+
+        while (currentDate < date) {
+          result.push(0);
+          months.push(
+            `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+              .toString()
+              .padStart(2, '0')}`
+          );
+          currentDate.setMonth(currentDate.getMonth() + 1);
+        }
+
+        result.push(values[i]);
+        months.push(dateStrings[i]);
+        currentDate.setMonth(currentDate.getMonth() + 1);
+      }
+
+      // Fill in dates up to the current month if not present
+      const today = new Date();
+      while (currentDate <= today) {
+        result.push(0);
+        months.push(
+          `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}`
+        );
+        currentDate.setMonth(currentDate.getMonth() + 1);
+      }
+      this.labels = months;
+      const modifiedArray = result.map((element) => {
+        return element === undefined ? 0 : element;
+      });
+      console.log(modifiedArray);
+      console.log(months);
+      return modifiedArray;
+    },
     sumArray(arr) {
       let sum = 0;
       for (let i = 0; i < arr.length; i++) {
@@ -81,7 +128,7 @@ export const useChatStore = defineStore('chat', {
         messages.push({ unixTime, sender, message });
       }
 
-      this.messages = messages.slice(1);
+      this.messages = messages;
       this.totalMessages = messages.length;
     },
     //#endregion
@@ -189,10 +236,33 @@ export const useChatStore = defineStore('chat', {
       }
 
       // Create an array of month-year values
-      const labels = Object.keys(totalMessagesPerMonth);
-      const data = Object.values(result[0].total);
+      const oldlabels = Object.keys(totalMessagesPerMonth);
+      const olddata = Object.values(result[0].total);
+      const data = this.fillMissingDatesAndReturnMonths(olddata, oldlabels);
+      const labels = this.labels;
+      const data1 = this.fillMissingDatesAndReturnMonths(
+        result[1].total,
+        oldlabels
+      );
+      const data2 = this.fillMissingDatesAndReturnMonths(
+        result[2].total,
+        oldlabels
+      );
+
+      console.log(data + labels);
       this.totalMessagesPerson1 = this.sumArray(Object.values(result[1].total));
+
       this.totalMessagesPerson2 = this.sumArray(Object.values(result[2].total));
+
+      this.avargeMessages = Math.round(
+        (this.totalMessagesPerson1 + this.totalMessagesPerson2) / labels.length
+      );
+      this.avargeMessagesPerson1 = Math.round(
+        this.totalMessagesPerson1 / labels.length
+      );
+      this.avargeMessagesPerson2 = Math.round(
+        this.totalMessagesPerson2 / labels.length
+      );
       this.MessagesByYearAndMonthPerson1 = {
         labels,
         datasets: [
@@ -200,7 +270,13 @@ export const useChatStore = defineStore('chat', {
             label: result[1].sendername,
             backgroundColor: '#4c86af',
             borderColor: '#5ba2d4',
-            data: Object.values(result[1].total),
+            data: Object.values(data1),
+          },
+          {
+            label: 'Messages',
+            backgroundColor: '#4caf5020',
+            borderColor: '#8bc34a20',
+            data,
           },
         ],
       };
@@ -211,7 +287,13 @@ export const useChatStore = defineStore('chat', {
             label: result[2].sendername,
             backgroundColor: '#af4c58',
             borderColor: '#c95764',
-            data: Object.values(result[2].total),
+            data: Object.values(data2),
+          },
+          {
+            label: 'Messages',
+            backgroundColor: '#4caf5020',
+            borderColor: '#8bc34a20',
+            data,
           },
         ],
       };
@@ -239,13 +321,13 @@ export const useChatStore = defineStore('chat', {
             label: result[1].sendername,
             backgroundColor: '#4c86af',
             borderColor: '#8bc34a00',
-            data: Object.values(result[1].total),
+            data: Object.values(data1),
           },
           {
             label: result[2].sendername,
             backgroundColor: '#af4c58',
             borderColor: '#8bc34a00',
-            data: Object.values(result[2].total),
+            data: Object.values(data2),
           },
         ],
       };

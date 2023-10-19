@@ -102,6 +102,9 @@ const lightcolor = ref('#f5f5f5');
 
 const options = ref({
   responsive: true,
+  line: {
+    spanGaps: true,
+  },
   scales: {
     x: {
       grid: {
@@ -122,7 +125,7 @@ const options = ref({
   plugins: {
     legend: {
       display: false,
-    },
+    }
   },
 });
 const optionslight = ref({
@@ -147,7 +150,7 @@ const optionslight = ref({
   plugins: {
     legend: {
       display: false,
-    },
+    }
   },
 });
 const chatStore = useChatStore();

@@ -48,72 +48,8 @@ async function handleUpload() {
   </q-file>
 
   <HowTo v-if="chatStore.messages == null"></HowTo>
-  <div class="q-ml-md q-mr-md q-mb-lg q-mt-lg" v-if="chatStore.messages != null">
-    <p class="text-h4 text-brand text-bold gt-sm q-mb-none">
-      <span class="ben-brand"
-        >Chat between &#160</span>
-        <span >
-        {{ chatStore.MessagesByYearAndMonthPerson1.datasets[0].label }} </span>
-        <span class="ben-brand">&#160 & &#160</span>
-        <span n class="text-secondary">
-        {{ chatStore.MessagesByYearAndMonthPerson2.datasets[0].label }}</span> 
-    </p>
-    <p class="text-h6 text-brand q-mr-md text-bold lt-md q-mb-none">
-      <span 
-        >Chat between &#160</span>
-        <span >
-        {{ chatStore.MessagesByYearAndMonthPerson1.datasets[0].label }} </span>
-        <span class="ben-brand">&#160 & &#160</span>
-        <span >
-        {{ chatStore.MessagesByYearAndMonthPerson2.datasets[0].label }}</span> 
-    </p>
-  </div>
-  <LineChart v-if="chatStore.messages != null" />
-  <div class="q-mt-md" v-if="chatStore.messages != null">
-    <div class="row items-start">
-      <div class="col-4 col-lg-2">
-        <q-item>
-          <q-item-section avatar>
-            <q-icon color="brand" class="ben-brand" name="message" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{ chatStore.totalMessages }}</q-item-label>
-            <q-item-label caption lines="2" class="gt-sm"
-              >messages</q-item-label
-            ></q-item-section
-          >
-        </q-item>
-      </div>
-      <div class="col-4 col-lg-2">
-        <q-item>
-          <q-item-section avatar>
-            <q-icon color="primary" name="message" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{ chatStore.totalMessagesPerson1 }}</q-item-label>
-            <q-item-label caption lines="2" class="gt-sm">{{
-              chatStore.MessagesByYearAndMonthPerson1.datasets[0].label
-            }}</q-item-label></q-item-section
-          >
-        </q-item>
-      </div>
-      <div class="col-4 col-lg-2">
-        <q-item>
-          <q-item-section avatar>
-            <q-icon color="secondary" name="message" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>{{ chatStore.totalMessagesPerson2 }}</q-item-label>
-            <q-item-label caption lines="2" class="gt-sm">{{
-              chatStore.MessagesByYearAndMonthPerson2.datasets[0].label
-            }}</q-item-label></q-item-section
-          >
-        </q-item>
-      </div>
-    </div>
-  </div>
-
-  <div class="q-mt-md" v-if="chatStore.messages != null">
+  <div class="q-mt-md q-mb-md" v-if="chatStore.messages != null">
+    <q-separator />
     <div class="row items-start">
       <div class="col-4 col-lg-2">
         <q-item>
@@ -194,7 +130,106 @@ async function handleUpload() {
         </q-item>
       </div>
     </div>
+
+    <q-separator />
   </div>
+
+  <LineChart v-if="chatStore.messages != null" />
+  <div class="q-mt-md" v-if="chatStore.messages != null">
+    <div class="row items-start">
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="brand" class="ben-brand" name="message" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.totalMessages }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-sm"
+              >messages</q-item-label
+            ></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="primary" name="message" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.totalMessagesPerson1 }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-sm">{{
+              chatStore.MessagesByYearAndMonthPerson1.datasets[0].label
+            }}</q-item-label></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="secondary" name="message" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ chatStore.totalMessagesPerson2 }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-sm">{{
+              chatStore.MessagesByYearAndMonthPerson2.datasets[0].label
+            }}</q-item-label></q-item-section
+          >
+        </q-item>
+      </div>
+      <!---->
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="brand" class="ben-brand" name="calendar_month" />
+          </q-item-section>
+          <q-item-section>
+            <q-tooltip> average messages by month </q-tooltip>
+            <q-item-label>{{ chatStore.avargeMessages }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-sm"
+              >average messages</q-item-label
+            ></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="primary" name="calendar_month" />
+          </q-item-section>
+          <q-item-section>
+            <q-tooltip>
+              average messages by month of
+              {{ chatStore.MessagesByYearAndMonthPerson1.datasets[0].label }}
+            </q-tooltip>
+            <q-item-label>{{ chatStore.avargeMessagesPerson1 }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-sm">{{
+              chatStore.MessagesByYearAndMonthPerson1.datasets[0].label
+            }}</q-item-label></q-item-section
+          >
+        </q-item>
+      </div>
+      <div class="col-4 col-lg-2">
+        <q-item>
+          <q-item-section avatar>
+            <q-icon color="secondary" name="calendar_month" />
+          </q-item-section>
+          <q-item-section>
+            <q-tooltip>
+              average messages by month of
+              {{
+                chatStore.MessagesByYearAndMonthPerson2.datasets[0].label
+              }}</q-tooltip
+            >
+            <q-item-label>{{ chatStore.avargeMessagesPerson2 }}</q-item-label>
+            <q-item-label caption lines="2" class="gt-sm">{{
+              chatStore.MessagesByYearAndMonthPerson2.datasets[0].label
+            }}</q-item-label></q-item-section
+          >
+        </q-item>
+      </div>
+    </div>
+  </div>
+
   <br />
   <br />
   <br />
