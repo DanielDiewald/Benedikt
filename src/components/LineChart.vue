@@ -74,7 +74,14 @@
       :options="optionsgroup"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == true && chatStore.uniqueSenders == 2"
-    /></div>
+    />
+    <Line
+      :data="chatStore.MessagesGroup"
+      :options="optionsgrouplight"
+      style="max-height: 50vh"
+      v-if="darkmode.darkmode == false && chatStore.uniqueSenders == 2"
+    />
+    </div>
 </template>
 
 <script setup>
@@ -126,6 +133,38 @@ const optionsgroup = ref({
       stacked: true,
       grid: {
         color: color,
+      },
+    },
+  },
+  plugins: {
+    legend: {
+      display: false,
+    }
+  },
+  
+  elements: {
+    line: {
+      tension: 0.4,
+    },
+  },
+});
+const optionsgrouplight = ref({
+  responsive: true,
+  scales: {
+    x: {
+      grid: {
+        display: true,
+        color: lightcolor,
+      },
+      ticks: {
+        display: true,
+        color: color,
+      },
+    },
+    y: {
+      stacked: true,
+      grid: {
+        color: lightcolor,
       },
     },
   },
