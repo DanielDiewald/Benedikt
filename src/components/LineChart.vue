@@ -68,6 +68,7 @@
       v-if="darkmode.darkmode == false && selectedchart == 2"
     />
   </div>
+  <PersonStats></PersonStats>
   <div class="q-ma-md">
   <Line
       :data="chatStore.MessagesGroup"
@@ -85,6 +86,8 @@
 </template>
 
 <script setup>
+
+import PersonStats from './PersonStats.vue';
 import { useModeStore } from '../stores/darkmode.js';
 const darkmode = useModeStore();
 import { ref, onMounted } from 'vue';
