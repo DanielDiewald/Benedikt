@@ -13,6 +13,20 @@ export const useChatStore = defineStore('chat', {
     totalMessagesPerson2: null,
     avargeMessagesPerson2: null,
     uniqueSenders: null,
+    MessagesGroup: {
+      labels: null,
+      datasets: [
+        {
+          fill: true,
+          label: null,
+          backgroundColor: null,
+          borderColor: null,
+          pointBackgroundColor: null,
+          pointHighlightStroke: null,
+          data: null,
+        },
+      ],
+    },
     MessagesByYearAndMonthPerson1: {
       labels: null,
       datasets: [
@@ -120,6 +134,53 @@ export const useChatStore = defineStore('chat', {
       this.labels = mergedMonths;
       return mergedValues;
     },
+    fillMissingDatesAndReturnMonthswithZero(values, dateStrings) {
+      const dates = dateStrings.map((dateString) => new Date(dateString));
+      const result = [];
+      const months = [];
+      let currentDate = new Date(dates[0]);
+
+      for (let i = 0; i < dates.length; i++) {
+        const date = dates[i];
+
+        while (currentDate < date) {
+          result.push(0);
+          months.push(
+            `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+              .toString()
+              .padStart(2, '0')}`
+          );
+          currentDate.setMonth(currentDate.getMonth() + 1);
+        }
+
+        result.push(values[i]);
+        months.push(dateStrings[i]);
+        currentDate.setMonth(currentDate.getMonth() + 1);
+      }
+
+      // Fill in dates up to the current month if not present
+      const today = new Date();
+      while (currentDate <= today) {
+        result.push(0);
+        months.push(
+          `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}`
+        );
+        currentDate.setMonth(currentDate.getMonth() + 1);
+      }
+
+      const modifiedArray = result.map((element) => {
+        return element === undefined ? 0 : element;
+      });
+      const [mergedValues, mergedMonths] = this.mergeAndSumArrays(
+        modifiedArray,
+        months
+      );
+      this.labels = mergedMonths;
+      return mergedValues;
+    },
+
     sumArray(arr) {
       let sum = 0;
       for (let i = 0; i < arr.length; i++) {
@@ -260,6 +321,61 @@ export const useChatStore = defineStore('chat', {
       const olddata = Object.values(result[0].total);
       const data = this.fillMissingDatesAndReturnMonths(olddata, oldlabels);
       const labels = this.labels;
+      if (result.length > 3) {
+        // Remove the second element (index 1)
+        result.splice(1, 1);
+      }
+
+      //groupchat
+      this.MessagesGroup = {
+        labels: null,
+        datasets: [
+          {
+            fill: true,
+            label: null,
+            backgroundColor: null,
+            borderColor: null,
+            pointBackgroundColor: null,
+            pointHighlightStroke: null,
+            data: null,
+          },
+        ],
+      };
+      for (var i = 0; i < result.length; i++) {
+        console.log('labels:');
+        console.log(Object.values(labels));
+
+        let data = this.fillMissingDatesAndReturnMonths(
+          result[i].total,
+          Object.values(oldlabels)
+        );
+        console.log(data);
+        const color1 = ['#4c86af', '#af4c58'];
+        const color2 = ['#5ba2d450', '#c9576450'];
+        let setcolor1 = null;
+        let setcolor2 = null;
+        if (i % 2 === 0) {
+          setcolor1 = color1[0];
+          setcolor2 = color2[0];
+        } else {
+          setcolor1 = color1[1];
+          setcolor2 = color2[1];
+        }
+        if (i != 0) {
+          const datay = {
+            fill: true,
+            label: result[i].sendername,
+            pointBackgroundColor: setcolor1,
+            pointHighlightStroke: setcolor1,
+            backgroundColor: setcolor2,
+            borderColor: setcolor1,
+            data,
+          };
+          this.MessagesGroup.labels = labels;
+          this.MessagesGroup.datasets.push(datay);
+        }
+      }
+
       const data1 = this.fillMissingDatesAndReturnMonths(
         result[1].total,
         oldlabels
@@ -268,7 +384,6 @@ export const useChatStore = defineStore('chat', {
         result[2].total,
         oldlabels
       );
-      console.log(data2);
 
       this.totalMessagesPerson1 = this.sumArray(Object.values(result[1].total));
 

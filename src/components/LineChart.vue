@@ -1,4 +1,5 @@
 <template>
+  
   <div>
     <q-btn
       icon="circle"
@@ -67,6 +68,13 @@
       v-if="darkmode.darkmode == false && selectedchart == 2"
     />
   </div>
+  <div class="q-ma-md">
+  <Line
+      :data="chatStore.MessagesGroup"
+      :options="optionsgroup"
+      style="max-height: 50vh"
+      v-if="darkmode.darkmode == true && chatStore.uniqueSenders == 2"
+    /></div>
 </template>
 
 <script setup>
@@ -84,6 +92,7 @@ import {
   LineElement,
   CategoryScale,
   LinearScale,
+  Filler
 } from 'chart.js';
 
 ChartJS.register(
@@ -93,13 +102,45 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
-console.log(LineElement);
 const selectedchart = ref(null);
 const color = ref('#161f32');
 const lightcolor = ref('#f5f5f5');
 
+const optionsgroup = ref({
+  responsive: true,
+  scales: {
+    x: {
+      grid: {
+        display: true,
+        color: color,
+      },
+      ticks: {
+        display: true,
+        color: lightcolor,
+      },
+    },
+    y: {
+      stacked: true,
+      grid: {
+        color: color,
+      },
+    },
+  },
+  plugins: {
+    legend: {
+      display: false,
+    }
+  },
+  
+  elements: {
+    line: {
+      tension: 0.4,
+    },
+  },
+});
 const options = ref({
   responsive: true,
   scales: {
