@@ -1,12 +1,15 @@
 <script setup>
-import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useChatStore } from '../stores/chat.js';
 import LineChart from '../components/LineChart.vue';
 import HowTo from '../components/HowTo.vue';
+import { useChatAnalyseStore } from '../stores/chatanalyse.js';
+import { useChartStore } from '../stores/chatchart.js';
+import { useChatCountStore } from '../stores/chatcount.js';
 
-const chatStore = useChatStore();
-const { messages } = storeToRefs(chatStore);
+const ccs = useChatCountStore();
+const cas = useChatAnalyseStore();
+const chatChartStore = useChartStore();
 const file = ref(null);
 
 async function handleUpload() {
@@ -16,16 +19,15 @@ async function handleUpload() {
     text = await file.value.text();
     localStorage.setItem('chat', text);
 
-    await chatStore.parseTextFile(text);
-    console.log(chatStore.messages);
-    await chatStore.countUniqueSenders(chatStore.messages);
-    await chatStore.countMessagesByYearAndMonthExtended(chatStore.messages);
-    await chatStore.extractWordsFromMessages(chatStore.messages);
+    await cas.ios(text);
+    console.log(cas.messages);
+    await chatChartStore.dataanalyse(ccs.PerMonth(cas.messages));
   }
 }
 </script>
 
 <template>
+  {{ chatChartStore.MessagesGroup }}
   <div class="q-ma-md">
     <p class="text-h4 text-brand text-bold gt-sm">
       <span class="ben-brand">Upload</span>
@@ -47,8 +49,8 @@ async function handleUpload() {
     <template v-slot:prepend> <q-icon name="attach_file" /> </template>
   </q-file>
 
-  <HowTo v-if="chatStore.messages == null"></HowTo>
-  <div class="q-mt-md q-mb-md" v-if="chatStore.messages != null">
+  <HowTo v-if="cas.messages == null"></HowTo>
+  <div class="q-mt-md q-mb-md" v-if="cas.messages != null">
     <q-separator />
     <div class="row items-start">
       <div class="col-4 col-lg-2">
@@ -57,7 +59,7 @@ async function handleUpload() {
             <q-icon color="brand" class="ben-brand" name="message" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ chatStore.totalMessages }}</q-item-label>
+            <q-item-label>{{ cas.totalMessages }}</q-item-label>
             <q-item-label caption lines="2" class="gt-xs"
               >messages</q-item-label
             ></q-item-section
@@ -70,7 +72,7 @@ async function handleUpload() {
             <q-icon color="brand" name="people" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label> uwu </q-item-label>
             <q-item-label caption lines="2" class="gt-xs"
               >people in chat</q-item-label
             ></q-item-section
@@ -83,7 +85,7 @@ async function handleUpload() {
             <q-icon color="brand" class="ben-brand" name="description" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ chatStore.wordscount }}</q-item-label>
+            <q-item-label> uwu</q-item-label>
             <q-item-label caption lines="2" class="gt-xs"
               >words</q-item-label
             ></q-item-section
@@ -96,7 +98,7 @@ async function handleUpload() {
             <q-icon color="brand" class="ben-brand" name="image" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label> uwu </q-item-label>
             <q-item-label caption lines="2" class="gt-xs"
               >images</q-item-label
             ></q-item-section
@@ -109,7 +111,7 @@ async function handleUpload() {
             <q-icon color="brand" class="ben-brand" name="movie" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label> uwu </q-item-label>
             <q-item-label caption lines="2" class="gt-xs"
               >videos</q-item-label
             ></q-item-section
@@ -122,7 +124,7 @@ async function handleUpload() {
             <q-icon color="brand" class="ben-brand" name="mic" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ chatStore.uniqueSenders }}</q-item-label>
+            <q-item-label>uwu</q-item-label>
             <q-item-label caption lines="2" class="gt-xs"
               >voicemails</q-item-label
             ></q-item-section
@@ -133,9 +135,9 @@ async function handleUpload() {
 
     <q-separator />
   </div>
-
-  <LineChart v-if="chatStore.messages != null" />
-
+  <!--
+  <LineChart v-if="chatAnalyseStore.messages != null" />
+-->
   <br />
   <br />
   <br />

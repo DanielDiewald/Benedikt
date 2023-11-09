@@ -180,6 +180,36 @@ export const useChatStore = defineStore('chat', {
       this.labels = mergedMonths;
       return mergedValues;
     },
+    getFirstMonthBySender(messages, senderName) {
+      // Filter the messages by the specified sender
+      const senderMessages = messages.filter(
+        (message) => message.sender === senderName
+      );
+
+      // Sort the sender's messages by their unixTime
+      senderMessages.sort((a, b) => a.unixTime - b.unixTime);
+
+      // Check if there are any messages from the sender
+      if (senderMessages.length > 0) {
+        // Get the unixTime of the first message
+        const firstUnixTime = senderMessages[0].unixTime;
+
+        // Create a Date object from the unixTime
+        console.log(senderMessages[0].unixTime);
+        const firstMessageDateYear = new Date(firstUnixTime);
+        const firstMessageDate = new Date(firstUnixTime * 1000); // Divide by 1000 to convert from seconds to milliseconds
+        console.log(firstMessageDate);
+        // Extract the year and month from the Date object
+        const year = firstMessageDateYear.getFullYear();
+        const month = (firstMessageDate.getUTCMonth() + 1)
+          .toString()
+          .padStart(2, '0'); // +1 because months are zero-based
+
+        return `${year}-${month}`;
+      } else {
+        return 'No messages found for the specified sender.';
+      }
+    },
 
     sumArray(arr) {
       let sum = 0;
@@ -341,25 +371,52 @@ export const useChatStore = defineStore('chat', {
           },
         ],
       };
+      let data1 = [];
+      let data2 = [];
       for (var i = 0; i < result.length; i++) {
-        console.log('labels:');
-        console.log(Object.values(labels));
-
-        let data = this.fillMissingDatesAndReturnMonths(
-          result[i].total,
-          Object.values(oldlabels)
+        let data = result[i].total;
+        const startDate = new Date(labels[0] + '-01');
+        const endDate = new Date(
+          this.getFirstMonthBySender(this.messages, result[i].sendername) +
+            '-01'
         );
+        if (labels[0] != endDate) {
+          alert(labels[0]);
+
+          const diffMonths =
+            (endDate.getFullYear() - startDate.getFullYear()) * 12 +
+            (endDate.getMonth() - startDate.getMonth());
+          const missingMonths = Math.max(diffMonths, 0);
+          missingMonths;
+          for (let i = 0; i < missingMonths; i++) {
+            alert(result[i].sendername);
+            data.unshift(NaN);
+            alert(data);
+          }
+        }
+        if (i == 1) {
+          data1 = this.fillMissingDatesAndReturnMonths(
+            data,
+            Object.values(oldlabels)
+          );
+        }
+        if (i == 2) {
+          data2 = this.fillMissingDatesAndReturnMonths(
+            data,
+            Object.values(oldlabels)
+          );
+        }
         console.log(data);
         const color1 = ['#4c86af', '#af4c58'];
         const color2 = ['#5ba2d450', '#c9576450'];
         let setcolor1 = null;
         let setcolor2 = null;
         if (i % 2 === 0) {
-          setcolor1 = color1[0];
-          setcolor2 = color2[0];
-        } else {
           setcolor1 = color1[1];
           setcolor2 = color2[1];
+        } else {
+          setcolor1 = color1[0];
+          setcolor2 = color2[0];
         }
         if (i != 0) {
           const datay = {
@@ -375,15 +432,6 @@ export const useChatStore = defineStore('chat', {
           this.MessagesGroup.datasets.push(datay);
         }
       }
-
-      const data1 = this.fillMissingDatesAndReturnMonths(
-        result[1].total,
-        oldlabels
-      );
-      const data2 = this.fillMissingDatesAndReturnMonths(
-        result[2].total,
-        oldlabels
-      );
 
       this.totalMessagesPerson1 = this.sumArray(Object.values(result[1].total));
 
