@@ -11,18 +11,22 @@ const ccs = useChatCountStore();
 const cas = useChatAnalyseStore();
 const chatChartStore = useChartStore();
 const file = ref(null);
-
+const software = ref(true);
 async function handleUpload() {
   console.log('handleUpload is triggered');
   let text;
   if (file.value) {
     text = await file.value.text();
     localStorage.setItem('chat', text);
-
-    await cas.android(text);
-    await console.log(cas.messages);
-    await chatChartStore.dataanalyse(ccs.PerMonth(cas.messages));
-    await chatChartStore.dataanalyseprivatechat(ccs.PerMonth(cas.messages));
+    if (software.value == true) {
+      await cas.ios(text);
+      await chatChartStore.dataanalyse(ccs.PerMonth(cas.messages));
+      await chatChartStore.dataanalyseprivatechat(ccs.PerMonth(cas.messages));
+    } else {
+      await cas.android(text);
+      await chatChartStore.dataanalyse(ccs.PerMonth(cas.messages));
+      await chatChartStore.dataanalyseprivatechat(ccs.PerMonth(cas.messages));
+    }
   }
 }
 </script>
@@ -35,6 +39,9 @@ async function handleUpload() {
     <p class="text-h6 text-brand q-mr-md text-bold lt-md">
       <span class="ben-brand">Upload</span>
     </p>
+  </div>
+  <div class="q-ml-md">
+    Android <q-toggle v-model="software" color="brand" /> IOS
   </div>
   <q-file
     style="backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px)"
