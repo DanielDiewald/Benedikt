@@ -20,14 +20,14 @@ async function handleUpload() {
     localStorage.setItem('chat', text);
 
     await cas.ios(text);
-    console.log(cas.messages);
+    await console.log(cas.messages);
     await chatChartStore.dataanalyse(ccs.PerMonth(cas.messages));
+    await chatChartStore.dataanalyseprivatechat(ccs.PerMonth(cas.messages));
   }
 }
 </script>
 
 <template>
-  {{ chatChartStore.MessagesGroup }}
   <div class="q-ma-md">
     <p class="text-h4 text-brand text-bold gt-sm">
       <span class="ben-brand">Upload</span>
@@ -135,9 +135,7 @@ async function handleUpload() {
 
     <q-separator />
   </div>
-  <!--
-  <LineChart v-if="chatAnalyseStore.messages != null" />
--->
+  <LineChart v-if="cas.messages != null" />
   <br />
   <br />
   <br />

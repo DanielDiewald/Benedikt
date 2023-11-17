@@ -17,7 +17,7 @@
       class="text-capitalize"
       rounded
       @click="selectedchart = 1"
-      >&#160  {{chatStore.MessagesByYearAndMonthPerson1.datasets[0].label}}</q-btn
+      >&#160  {{chartStore.Person1.datasets[0].label}}</q-btn
     >
     
     <q-btn
@@ -27,42 +27,42 @@
       class="text-capitalize"
       rounded
       @click="selectedchart = 2"
-      >&#160  {{chatStore.MessagesByYearAndMonthPerson2.datasets[0].label}}</q-btn
+      >&#160  {{chartStore.Person2.datasets[0].label}}</q-btn
     >
   </div>
   <div class="q-ma-md">
     <Line
-      :data="chatStore.MessagesByYearAndMonthExtended"
+      :data="chartStore.MessagesGroup"
       :options="options"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == true && selectedchart == null"
     />
     <Line
-      :data="chatStore.MessagesByYearAndMonthPerson1"
+      :data="chartStore.Person1"
       :options="options"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == true && selectedchart == 1"
     />
     <Line
-      :data="chatStore.MessagesByYearAndMonthPerson2"
+      :data="chartStore.Person2"
       :options="options"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == true && selectedchart == 2"
     />
     <Line
-      :data="chatStore.MessagesByYearAndMonthExtended"
+      :data="chartStore.MessagesGroup"
       :options="optionslight"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == false && selectedchart == null"
     />
     <Line
-      :data="chatStore.MessagesByYearAndMonthPerson1"
+      :data="chartStore.Person1"
       :options="optionslight"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == false && selectedchart == 1"
     />
     <Line
-      :data="chatStore.MessagesByYearAndMonthPerson2"
+      :data="chartStore.Person2"
       :options="optionslight"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == false && selectedchart == 2"
@@ -71,13 +71,13 @@
   <PersonStats></PersonStats>
   <div class="q-ma-md">
   <Line
-      :data="chatStore.MessagesGroup"
+      :data="chartStore.MessagesGroup"
       :options="optionsgroup"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == true && chatStore.uniqueSenders == 2"
     />
     <Line
-      :data="chatStore.MessagesGroup"
+      :data="chartStore.MessagesGroup"
       :options="optionsgrouplight"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == false && chatStore.uniqueSenders == 2"
@@ -93,6 +93,7 @@ const darkmode = useModeStore();
 import { ref, onMounted } from 'vue';
 import { Line } from 'vue-chartjs';
 import { useChatStore } from '../stores/chat.js';
+import { useChartStore } from '../stores/chatchart';
 import {
   Chart as ChartJS,
   Title,
@@ -250,4 +251,5 @@ const optionslight = ref({
   },
 });
 const chatStore = useChatStore();
+const chartStore = useChartStore();
 </script>
