@@ -74,13 +74,13 @@
       :data="chartStore.MessagesGroup"
       :options="optionsgroup"
       style="max-height: 50vh"
-      v-if="darkmode.darkmode == true && chatStore.uniqueSenders == 2"
+      v-if="darkmode.darkmode == true"
     />
     <Line
       :data="chartStore.MessagesGroup"
       :options="optionsgrouplight"
       style="max-height: 50vh"
-      v-if="darkmode.darkmode == false && chatStore.uniqueSenders == 2"
+      v-if="darkmode.darkmode == false"
     />
     </div>
 </template>

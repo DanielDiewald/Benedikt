@@ -19,7 +19,7 @@ async function handleUpload() {
     text = await file.value.text();
     localStorage.setItem('chat', text);
 
-    await cas.ios(text);
+    await cas.android(text);
     await console.log(cas.messages);
     await chatChartStore.dataanalyse(ccs.PerMonth(cas.messages));
     await chatChartStore.dataanalyseprivatechat(ccs.PerMonth(cas.messages));
