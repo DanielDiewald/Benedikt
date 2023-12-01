@@ -44,6 +44,7 @@ onMounted(async () => {
   registration.addEventListener('updatefound', () => (update.value = true));
   if (registration.waiting) update.value = true;
   if (update.value == true) {
+    navigator.vibration(200);
     $q.notify({
       timeout: 10000,
       message: 'There is a new Update.',
@@ -72,10 +73,11 @@ onMounted(async () => {
 
 watch(isOnline, async (newvalue, oldvalue) => {
   if (!newvalue) {
+    navigator.vibration(200);
     $q.notify({
       timeout: 2500,
       message: 'You are offline...',
-      color: 'secondary',
+      color: 'secondarybrand',
       avatar: '/logo.png',
       actions: [
         {
@@ -88,6 +90,7 @@ watch(isOnline, async (newvalue, oldvalue) => {
       ],
     });
   } else {
+    navigator.vibration(200);
     $q.notify({
       timeout: 2500,
       message: 'You are online!',

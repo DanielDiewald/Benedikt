@@ -12,6 +12,8 @@ import Wellcome from '../components/Wellcome.vue';
   color: $green !important
 .bg-brand
   background: linear-gradient(160deg, $light-green 0%, $green 40%) !important
+.bg-secondarybrand
+  background: linear-gradient(160deg, #b95e69 0%, #af4c58 40%) !important
 body.body--dark
   background: #111827
 body.body--light
