@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useQuasar } from 'quasar';
 import { useModeStore } from './stores/darkmode.js';
 import { onlineTest } from '@/utils/onlineTest.js';
@@ -43,21 +43,80 @@ onMounted(async () => {
   }
   registration.addEventListener('updatefound', () => (update.value = true));
   if (registration.waiting) update.value = true;
+  if (update.value == true) {
+    $q.notify({
+      timeout: 10000,
+      message: 'There is a new Update.',
+      color: 'brand',
+      avatar: '/logo.png',
+      actions: [
+        {
+          label: 'Update',
+          color: 'white',
+          handler: () => {
+            onRestart();
+          },
+        },
+        {
+          label: 'Dismiss',
+          color: 'white',
+          handler: () => {
+            /* ... */
+          },
+        },
+      ],
+    });
+  }
   if (isOnline.value == true) await synchronize();
+});
+
+watch(isOnline, async (newvalue, oldvalue) => {
+  if (!newvalue) {
+    $q.notify({
+      timeout: 2500,
+      message: 'You are offline...',
+      color: 'secondary',
+      avatar: '/logo.png',
+      actions: [
+        {
+          label: 'Dismiss',
+          color: 'white',
+          handler: () => {
+            /* ... */
+          },
+        },
+      ],
+    });
+  } else {
+    $q.notify({
+      timeout: 2500,
+      message: 'You are online!',
+      color: 'brand',
+      avatar: '/logo.png',
+      actions: [
+        {
+          label: 'Dismiss',
+          color: 'white',
+          handler: () => {
+            /* ... */
+          },
+        },
+      ],
+    });
+  }
 });
 </script>
 
 <template>
-  <span v-if="!isOnline"> <q-icon color="black" name="wifi_off"></q-icon></span>
-  <q-btn class="q-mt-md q-mr-md text-brand" flat round @click="onRestart()">
-    <q-icon name="update" v-if="update"></q-icon
-  ></q-btn>
   <div class="row">
     <div class="col">
       <q-btn size="sm" rounded flat class="q-ml-md q-mt-lg text-no-wrap" to="/"
         ><p class="text-brand q-mb-none">
-          <span>🦉 </span>
-          <span class="ben-brand">Benedikt | your WhatsApp assistant</span>
+          <span>🦉<q-img src="/logo.png" style="display: none" /> </span>
+          <span class="ben-brand"
+            ><span class="text-bold">Benedikt</span> | your WhatsApp
+            assistant</span
+          >
         </p></q-btn
       >
     </div>
