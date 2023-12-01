@@ -25,6 +25,7 @@
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
     "sass": "^1.32.12",
-    "vite": "^3.1.8"
+    "vite": "^3.1.8",
+    "vite-plugin-pwa": "^0.17.2"
   }
 }
