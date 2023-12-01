@@ -6,6 +6,7 @@
     "build": "vite build",
     "network": "vite --host",
     "preview": "vite preview",
+    "npreview": "vite preview --host",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
