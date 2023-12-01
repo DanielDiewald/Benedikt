@@ -11,7 +11,10 @@ export default defineConfig({
     port: 80,
   },
   plugins: [
-    VitePWA({ registerType: 'autoUpdate', manifest }),
+    VitePWA({
+      manifest,
+      includeAssets: ['**/*.{js,css,html,jpg,ico,xml,svg,png,ttf,woff2}'],
+    }),
     vue({
       template: { transformAssetUrls },
     }),
