@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     VitePWA({
       manifest,
-      includeAssets: ['**/*.{js,css,html,jpg,ico,xml,svg,png,ttf,woff2}'],
+      includeAssets: ['**/*.{js,css,html,jpg,ico,xml,svg,png,ttf,woff2,woff}'],
     }),
     vue({
       template: { transformAssetUrls },

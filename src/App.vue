@@ -44,7 +44,6 @@ onMounted(async () => {
   registration.addEventListener('updatefound', () => (update.value = true));
   if (registration.waiting) update.value = true;
   if (update.value == true) {
-    navigator.vibration(200);
     $q.notify({
       timeout: 10000,
       message: 'There is a new Update.',
@@ -73,7 +72,6 @@ onMounted(async () => {
 
 watch(isOnline, async (newvalue, oldvalue) => {
   if (!newvalue) {
-    navigator.vibration(200);
     $q.notify({
       timeout: 2500,
       message: 'You are offline...',
@@ -90,13 +88,38 @@ watch(isOnline, async (newvalue, oldvalue) => {
       ],
     });
   } else {
-    navigator.vibration(200);
     $q.notify({
       timeout: 2500,
       message: 'You are online!',
       color: 'brand',
       avatar: '/logo.png',
       actions: [
+        {
+          label: 'Dismiss',
+          color: 'white',
+          handler: () => {
+            /* ... */
+          },
+        },
+      ],
+    });
+  }
+});
+watch(update, async (newvalue, oldvalue) => {
+  if (newvalue == true) {
+    $q.notify({
+      timeout: 10000,
+      message: 'There is a new Update.',
+      color: 'brand',
+      avatar: '/logo.png',
+      actions: [
+        {
+          label: 'Update',
+          color: 'white',
+          handler: () => {
+            onRestart();
+          },
+        },
         {
           label: 'Dismiss',
           color: 'white',
@@ -145,6 +168,7 @@ watch(isOnline, async (newvalue, oldvalue) => {
   </div>
 
   <div class="q-pa-md" style="width: 100%">
+    <p class="text-secondary">Online: {{ isOnline }} Update: {{ update }}</p>
     <router-view />
   </div>
 </template>
