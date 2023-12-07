@@ -6,6 +6,7 @@ import HowTo from '../components/HowTo.vue';
 import { useChatAnalyseStore } from '../stores/chatanalyse.js';
 import { useChartStore } from '../stores/chatchart.js';
 import { useChatCountStore } from '../stores/chatcount.js';
+import HowToAndroid from '../components/HowToAndroid.vue';
 
 const ccs = useChatCountStore();
 const cas = useChatAnalyseStore();
@@ -56,7 +57,8 @@ async function handleUpload() {
     <template v-slot:prepend> <q-icon name="attach_file" /> </template>
   </q-file>
 
-  <HowTo v-if="cas.messages == null"></HowTo>
+  <HowTo v-if="cas.messages == null && software == true"></HowTo>
+  <HowToAndroid v-if="cas.messages == null && software == false"></HowToAndroid>
   <div class="q-mt-md q-mb-md" v-if="cas.messages != null">
     <q-separator />
     <div class="row items-start">

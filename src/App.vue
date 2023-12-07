@@ -168,7 +168,6 @@ watch(update, async (newvalue, oldvalue) => {
   </div>
 
   <div class="q-pa-md" style="width: 100%">
-    <p class="text-secondary">Online: {{ isOnline }} Update: {{ update }}</p>
     <router-view />
   </div>
 </template>

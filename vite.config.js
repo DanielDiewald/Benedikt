@@ -13,7 +13,13 @@ export default defineConfig({
   plugins: [
     VitePWA({
       manifest,
-      includeAssets: ['**/*.{js,css,html,jpg,ico,xml,svg,png,ttf,woff2,woff}'],
+      includeAssets: [
+        '**/*.{js,css,html,jpg,ico,xml,svg,png,ttf,woff2,woff}',
+        'assets/*.{js,css,html,jpg,ico,xml,svg,png,ttf,woff2,woff}',
+        'assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNa.fd84f88b.woff',
+        'assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.83be7b2f.woff2',
+      ],
+      includeManifestIcons: true,
     }),
     vue({
       template: { transformAssetUrls },

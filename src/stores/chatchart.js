@@ -2,11 +2,25 @@ import { defineStore } from 'pinia';
 
 export const useChartStore = defineStore('chart', {
   state: () => ({
+    tocalcount: [],
     MessagesGroup: {
       labels: null,
       datasets: [
         {
           fill: true,
+          label: null,
+          backgroundColor: null,
+          borderColor: null,
+          pointBackgroundColor: null,
+          pointHighlightStroke: null,
+          data: null,
+        },
+      ],
+    },
+    MessagesGroupChart1: {
+      labels: null,
+      datasets: [
+        {
           label: null,
           backgroundColor: null,
           borderColor: null,
@@ -50,29 +64,40 @@ export const useChartStore = defineStore('chart', {
     color2: ['#5ba2d450', '#c9576450'],
   }),
   actions: {
+    sumArrays(arr1, arr2) {
+      const result = [];
+
+      // Check if both arrays have the same length
+      if (arr1.length !== arr2.length) {
+        return 'Arrays should have the same length';
+      }
+
+      for (let i = 0; i < arr1.length; i++) {
+        result.push(arr1[i] + arr2[i]);
+      }
+
+      return result;
+    },
     async dataanalyseprivatechat(data) {
       let personcount = 0;
+      let messages1 = [];
       for (const sender in data) {
         console.log(sender);
         const messagesData = data[sender];
         const labels = Object.keys(messagesData);
         const messageCounts = Object.values(messagesData);
+        this.MessagesGroupChart1.labels = labels;
         if (personcount == 0) {
-          this.Person2 = {
-            labels,
-            datasets: [
-              {
-                label: sender,
-                data: messageCounts,
+          messages1 = messageCounts;
+          this.MessagesGroupChart1.datasets.push({
+            label: sender,
+            data: messageCounts,
 
-                backgroundColor: '#4c86af',
-                borderColor: '#5ba2d4',
-              },
-            ],
-          };
-        }
-        if (personcount == 1) {
-          this.Person1 = {
+            backgroundColor: '#af4c58',
+            borderColor: '#c95764',
+          });
+
+          this.Person2 = {
             labels,
             datasets: [
               {
@@ -81,6 +106,35 @@ export const useChartStore = defineStore('chart', {
 
                 backgroundColor: '#af4c58',
                 borderColor: '#c95764',
+              },
+            ],
+          };
+        }
+        if (personcount == 1) {
+          const total = this.sumArrays(messages1, messageCounts);
+          this.MessagesGroupChart1.datasets.push({
+            label: 'total messages',
+            data: total,
+
+            backgroundColor: '#4caf50',
+            borderColor: '#8bc34a',
+          });
+          this.MessagesGroupChart1.datasets.push({
+            label: sender,
+            data: messageCounts,
+
+            backgroundColor: '#4c86af',
+            borderColor: '#5ba2d4',
+          });
+          this.Person1 = {
+            labels,
+            datasets: [
+              {
+                label: sender,
+                data: messageCounts,
+
+                backgroundColor: '#4c86af',
+                borderColor: '#5ba2d4',
               },
             ],
           };

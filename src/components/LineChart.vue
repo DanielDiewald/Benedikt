@@ -32,7 +32,7 @@
   </div>
   <div class="q-ma-md">
     <Line
-      :data="chartStore.MessagesGroup"
+      :data="chartStore.MessagesGroupChart1"
       :options="options"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == true && selectedchart == null"
@@ -50,7 +50,7 @@
       v-if="darkmode.darkmode == true && selectedchart == 2"
     />
     <Line
-      :data="chartStore.MessagesGroup"
+      :data="chartStore.MessagesGroupChart1"
       :options="optionslight"
       style="max-height: 50vh"
       v-if="darkmode.darkmode == false && selectedchart == null"

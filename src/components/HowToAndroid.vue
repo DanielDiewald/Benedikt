@@ -2,10 +2,10 @@
   <q-intersection once transition="scale" class="example-item">
     <div class="col-12 q-pa-md">
       <p class="text-h4 text-brand text-bold gt-sm">
-        <span class="ben-brand">How to use Benedikt on IOS?</span>
+        <span class="ben-brand">How to use Benedikt on Android?</span>
       </p>
       <p class="text-h6 text-brand q-mr-md text-bold lt-md">
-        <span class="ben-brand">How to use Benedikt on IOS?</span>
+        <span class="ben-brand">How to use Benedikt on Android?</span>
       </p>
       <div class="row items-start">
         <div class="col-12 col-sm-12 col-md-4 q-pa-sm">
@@ -13,10 +13,11 @@
             <q-card-section>
               <div class="text-h6">📱 Export WhatsApp Chats</div>
               <div class="text-subtitle2">
-                Open WhatsApp and select the chat you want to export. Tap on the
-                contact or group name at the top. Scroll down and tap "Export
-                Chat." Choose not to include media. Select the destination for
-                the exported chat (email, cloud storage, etc.).
+                Open WhatsApp and select the chat you want to export. Open Chat
+                Options: Inside the chat, tap the three-dot menu icon. Tap on
+                More. Selecet "Export Chat." Choose not to include media. Select
+                the destination for the exported chat (email, cloud storage,
+                etc.).
               </div>
             </q-card-section>
           </q-card>
