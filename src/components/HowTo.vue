@@ -12,7 +12,7 @@
           <q-card class="my-card" flat>
             <q-card-section>
               <div class="text-h6">📱 Export WhatsApp Chats</div>
-              <div class="text-subtitle2">
+              <div class="text-subtitle2 text-weight-light">
                 Open WhatsApp and select the chat you want to export. Tap on the
                 contact or group name at the top. Scroll down and tap "Export
                 Chat." Choose not to include media. Select the destination for
@@ -25,7 +25,7 @@
           <q-card class="my-card" flat>
             <q-card-section>
               <div class="text-h6">📁 Receive the Chat File</div>
-              <div class="text-subtitle2">
+              <div class="text-subtitle2 text-weight-light">
                 Check your chosen destination (email, cloud storage, etc.) to
                 find the chat file. It may be in a compressed format like a ZIP
                 file. Download the ZIP file to your device if necessary. Use a
@@ -40,7 +40,7 @@
           <q-card class="my-card" flat>
             <q-card-section>
               <div class="text-h6">🏁 Import the Chat Text File</div>
-              <div class="text-subtitle2">
+              <div class="text-subtitle2 text-weight-light">
                 Open the Benedikt app or website on your device. Look for an
                 option to import or open a text file. Select the exported
                 WhatsApp chat text file you want to import. Once imported, you
@@ -55,7 +55,20 @@
   </q-intersection>
 </template>
 <style scoped>
-.my-card {
-  background: none !important;
+@media only screen and (max-width: 767px) {
+  .my-card {
+    height: auto;
+  }
+  /* Styles for mobile phones */
+}
+@media only screen and (min-width: 900px) {
+  .my-card {
+    min-height: 240px;
+  }
+}
+@media only screen and (min-width: 1300px) {
+  .my-card {
+    min-height: 200px;
+  }
 }
 </style>

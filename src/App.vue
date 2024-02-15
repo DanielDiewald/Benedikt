@@ -134,7 +134,7 @@ watch(update, async (newvalue, oldvalue) => {
 </script>
 
 <template>
-  <div class="row">
+  <div class="row benediktapp">
     <div class="col">
       <q-btn size="sm" rounded flat class="q-ml-md q-mt-lg text-no-wrap" to="/"
         ><p class="text-brand q-mb-none">

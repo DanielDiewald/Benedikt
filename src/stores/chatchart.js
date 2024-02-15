@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useChartStore = defineStore('chart', {
   state: () => ({
+    display: false,
     tocalcount: [],
     MessagesGroup: {
       labels: null,
@@ -79,8 +80,22 @@ export const useChartStore = defineStore('chart', {
       return result;
     },
     async dataanalyseprivatechat(data) {
+      this.MessagesGroupChart1 = {
+        labels: null,
+        datasets: [
+          {
+            label: null,
+            backgroundColor: null,
+            borderColor: null,
+            pointBackgroundColor: null,
+            pointHighlightStroke: null,
+            data: null,
+          },
+        ],
+      };
       let personcount = 0;
       let messages1 = [];
+      let sender1 = '';
       for (const sender in data) {
         console.log(sender);
         const messagesData = data[sender];
@@ -89,13 +104,7 @@ export const useChartStore = defineStore('chart', {
         this.MessagesGroupChart1.labels = labels;
         if (personcount == 0) {
           messages1 = messageCounts;
-          this.MessagesGroupChart1.datasets.push({
-            label: sender,
-            data: messageCounts,
-
-            backgroundColor: '#af4c58',
-            borderColor: '#c95764',
-          });
+          sender1 = sender;
 
           this.Person2 = {
             labels,
@@ -111,21 +120,29 @@ export const useChartStore = defineStore('chart', {
           };
         }
         if (personcount == 1) {
-          const total = this.sumArrays(messages1, messageCounts);
-          this.MessagesGroupChart1.datasets.push({
+          const total = await this.sumArrays(messages1, messageCounts);
+          await this.MessagesGroupChart1.datasets.push({
             label: 'total messages',
             data: total,
 
             backgroundColor: '#4caf50',
             borderColor: '#8bc34a',
           });
-          this.MessagesGroupChart1.datasets.push({
+          await this.MessagesGroupChart1.datasets.push({
             label: sender,
             data: messageCounts,
 
             backgroundColor: '#4c86af',
             borderColor: '#5ba2d4',
           });
+          this.MessagesGroupChart1.datasets.push({
+            label: sender1,
+            data: messages1,
+
+            backgroundColor: '#af4c58',
+            borderColor: '#c95764',
+          });
+
           this.Person1 = {
             labels,
             datasets: [

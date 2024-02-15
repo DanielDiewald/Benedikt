@@ -3,9 +3,9 @@ import Wellcome from '../components/Wellcome.vue';
 </script>
 
 <template>
-  <Wellcome class="q-ml-xl q-mr-xl gt-sm"></Wellcome>
+  <Wellcome class="q-ml-xl q-mr-xl gt-sm benediktapp"></Wellcome>
 
-  <Wellcome class="lt-md"></Wellcome>
+  <Wellcome class="lt-md benediktapp"></Wellcome>
 </template>
 <style lang="sass">
 .text-brand

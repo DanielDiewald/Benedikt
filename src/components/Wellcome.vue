@@ -4,7 +4,7 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
 </script>
 <template>
   <div class="row">
-    <div class="col-12 q-pa-md">
+    <div class="col-lg-6 col-md-6 col-12 ">
       <div class="Benedikt-title q-pr-md q-pl-md">
         <p class="text-brand text-h4 lt-lg q-mb-none text-bold "><span class="ben-brand text-uppercase">Benedikt</span> 🦉</p>
         <p class="text-h4 q-mb-none lt-lg text-bold gt-sm">
@@ -33,6 +33,14 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
         <q-btn size="md" flat rounded disabled icon="play_circle">&#160 Watch Video Tutorial</q-btn></div>
       </div>
       
+    </div>
+    <div class="col-6 gt-sm relative-position">
+    
+      <div> <video autoplay muted loop playsinline style="height: 40vh;" class="VideoMask">
+    <source src="/pexels-steven-hause-12708760 (540p).mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video></div>
+ 
     </div>
    
     <div class="col-12 q-pa-md">
@@ -112,5 +120,11 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
 <style scoped lang="sass">
 .Benedikt-title 
   max-width: 600px
-
+.VideoMask
+  -webkit-mask-image: url(/mask/1.png)
+  mask-image: url(/mask/1.png)
+  -webkit-mask-repeat: no-repeat
+  mask-repeat: no-repeat 
+  mask-position: center center
+  mask-size: contain
 </style>

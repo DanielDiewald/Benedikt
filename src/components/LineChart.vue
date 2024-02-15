@@ -95,26 +95,11 @@ import { Line } from 'vue-chartjs';
 import { useChatStore } from '../stores/chat.js';
 import { useChartStore } from '../stores/chatchart';
 import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  PointElement,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  Filler
+  Chart as ChartJS, ArcElement, Tooltip, Legend 
 } from 'chart.js';
 
 ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler
+  ArcElement, Tooltip, Legend
 );
 const selectedchart = ref(null);
 const color = ref('#161f32');
