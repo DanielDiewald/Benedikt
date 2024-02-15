@@ -8,7 +8,7 @@ import { useChartStore } from '../stores/chatchart.js';
 import { useChatCountStore } from '../stores/chatcount.js';
 import HowToAndroid from '../components/HowToAndroid.vue';
 import PieChart from '../components/PieChart.vue';
-import Sharecomp from '../components/sharecomp.vue';
+import ShareView from '../components/ShareView.vue';
 
 const ccs = useChatCountStore();
 const cas = useChatAnalyseStore();
@@ -213,7 +213,7 @@ function reloadepage() {
     </div>
   </div>
   <q-dialog v-model="sharedata" persistent>
-    <Sharecomp></Sharecomp>
+    <ShareView></ShareView>
   </q-dialog>
 </template>
 

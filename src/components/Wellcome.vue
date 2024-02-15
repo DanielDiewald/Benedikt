@@ -34,14 +34,7 @@ const cards = ref([{title: '📈 Detailed Stats', description: 'Get comprehensiv
       </div>
       
     </div>
-    <div class="col-6 gt-sm relative-position">
-    
-      <div> <video autoplay muted loop playsinline style="height: 40vh;" class="VideoMask">
-    <source src="/pexels-steven-hause-12708760 (540p).mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video></div>
- 
-    </div>
+
    
     <div class="col-12 q-pa-md">
     <p class="text-h4 text-brand q-ml-md text-bold xl">
