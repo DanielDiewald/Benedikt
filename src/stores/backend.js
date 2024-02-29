@@ -65,7 +65,17 @@ export const useServerStore = defineStore('server', {
         else this.message.value = error.response.data;
       }
     },
-    async delChat() {},
+    async delChat(id) {
+      try {
+        await axios.delete(import.meta.env.VITE_SERVER + 'chat/' + id);
+        navigator.vibration(200);
+      } catch (error) {
+        console.log('catch');
+        if (error.response.status === 404)
+          this.message.value = 'Server antwortet nicht';
+        else this.message.value = error.response.data;
+      }
+    },
     async patchChat() {},
   },
 });
