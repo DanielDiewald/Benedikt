@@ -20,6 +20,12 @@ const router = createRouter({
       name: 'about',
       component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/sharedstats/:id',
+      name: 'shared',
+      props: true,
+      component: () => import('../views/SharedStats.vue'),
+    },
   ],
 });
 
