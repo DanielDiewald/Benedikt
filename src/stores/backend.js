@@ -1,16 +1,19 @@
 import { defineStore } from 'pinia';
-import { axios } from 'axios';
+import axios from 'axios';
 
 export const useServerStore = defineStore('server', {
   state: () => {
     return {
       chat: [],
+      people: [],
     };
   },
   actions: {
     async shareChat(chat, people) {
+      console.log(chat);
+      console.log(people);
       try {
-        console.log('try');
+        console.log('try chat');
         const { data } = await axios.post(
           import.meta.env.VITE_SERVER + 'chat',
           {
@@ -24,15 +27,13 @@ export const useServerStore = defineStore('server', {
           }
         );
         for (let p = 0; p < people.length; p++) {
-          await this.postPerson(people[p], data.chat_id);
+          console.log(p);
+          await this.postPerson(people[p], data[0].chat_id);
         }
-        alert('Chat added!');
-        navigator.vibration(200);
-      } catch (error) {
+        //navigator.vibration(200);
+      } catch (err) {
         console.log('catch');
-        if (error.response.status === 404)
-          this.message.value = 'Server antwortet nicht';
-        else this.message.value = error.response.data;
+        console.log(err.response.data);
       }
     },
     async getChat(id) {
@@ -41,7 +42,7 @@ export const useServerStore = defineStore('server', {
           import.meta.env.VITE_SERVER + 'chat/' + id
         );
         this.chat = data;
-        navigator.vibration(200);
+        //navigator.vibration(200);
       } catch (error) {
         console.log('catch');
         if (error.response.status === 404)
@@ -50,25 +51,24 @@ export const useServerStore = defineStore('server', {
       }
     },
     async postPerson(person, id) {
-      try {
-        console.log('try');
-        await axios.post(import.meta.env.VITE_SERVER + 'person', {
-          name: person.name,
-          pm_count: person.pm_count,
-          chat_id: id,
-        });
-        navigator.vibration(200);
-      } catch (error) {
-        console.log('catch');
-        if (error.response.status === 404)
-          this.message.value = 'Server antwortet nicht';
-        else this.message.value = error.response.data;
-      }
+      const guy = {
+        name: person.name,
+        pm_count: person.pm_count,
+        chat_id: id,
+      };
+      console.log(guy);
+      console.log('try people');
+      const { data } = await axios.post(
+        import.meta.env.VITE_SERVER + 'person',
+        guy
+      );
+      console.log(data);
+      //navigator.vibration(200);
     },
     async delChat(id) {
       try {
         await axios.delete(import.meta.env.VITE_SERVER + 'chat/' + id);
-        navigator.vibration(200);
+        //navigator.vibration(200);
       } catch (error) {
         console.log('catch');
         if (error.response.status === 404)
