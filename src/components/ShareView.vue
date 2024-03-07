@@ -95,12 +95,11 @@ function sharechat() {
   backendserver.shareChat(chat, people);
 }
 const title = window.location.title;
-const url = `${import.meta.env.VITE_URL}sharestats/${backendserver.chatid}`;
 async function shareurl() {
   try {
     await navigator.share({
       title: `${title}`,
-      url: `${url}`,
+      url: `${import.meta.env.VITE_URL}sharestats/${backendserver.chatid}`,
       text: 'Hey here is some Stats!',
     });
     console.log('Data was shared successfully');
