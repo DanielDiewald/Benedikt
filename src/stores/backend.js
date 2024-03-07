@@ -90,7 +90,19 @@ export const useServerStore = defineStore('server', {
         );
         this.chat = data[0];
         await this.getPeople(id);
+        this.incrementChatViews(id);
         //navigator.vibration(200);
+      } catch (error) {
+        console.log('catch');
+        if (error.response.status === 404)
+          this.message.value = 'Server antwortet nicht';
+        else this.message.value = error.response.data;
+      }
+    },
+    async incrementChatViews(id) {
+      try {
+        await axios.patch(`${import.meta.env.VITE_SERVER}chat/${id}`);
+        // Optionally, you can do something after successful update
       } catch (error) {
         console.log('catch');
         if (error.response.status === 404)

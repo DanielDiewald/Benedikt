@@ -7,6 +7,7 @@
       <p class="text-h4 text-brand text-bold q-mb-none">Shared Stats</p>
       <p class="q-mt-none">
         <span>#{{ chat.id }} <q-tooltip>Chat #ID</q-tooltip></span>
+        Views: {{ backend.chat.views }}
         <q-btn
           flat
           color="secondary"
@@ -16,7 +17,7 @@
           @click="backend.delChat(chat.id)"
           size="sm"
         >
-        <q-tooltip>Delete Chat</q-tooltip>
+          <q-tooltip>Delete Chat</q-tooltip>
         </q-btn>
       </p>
 
