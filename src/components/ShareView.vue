@@ -95,7 +95,7 @@ function sharechat() {
   backendserver.shareChat(chat, people);
 }
 const title = window.location.title;
-const url = window.document.location.href;
+const url = `${import.meta.env.VITE_URL}sharestats/${backendserver.chatid}`;
 async function shareurl() {
   try {
     await navigator.share({

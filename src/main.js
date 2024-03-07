@@ -14,6 +14,8 @@ import router from './router';
 
 const app = createApp(App);
 
+app.config.globalProperties.$hostname = 'http://localhost:3000';
+
 app.use(createPinia());
 app.use(router);
 app.use(Quasar, {
