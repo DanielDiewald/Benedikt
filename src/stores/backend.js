@@ -4,8 +4,53 @@ import axios from 'axios';
 export const useServerStore = defineStore('server', {
   state: () => {
     return {
+      show: false,
       chat: [],
       people: [],
+      chatid: null,
+      sharedchart: {
+        labels: null,
+        datasets: [
+          {
+            label: null,
+            backgroundColor: null,
+            borderColor: null,
+            pointBackgroundColor: null,
+            pointHighlightStroke: null,
+            data: null,
+          },
+        ],
+      },
+      Person1: {
+        labels: null,
+        datasets: [
+          {
+            label: null,
+            backgroundColor: null,
+            data: null,
+          },
+        ],
+      },
+      Person2: {
+        labels: null,
+        datasets: [
+          {
+            label: null,
+            backgroundColor: null,
+            data: null,
+          },
+        ],
+      },
+      Total: {
+        labels: null,
+        datasets: [
+          {
+            label: null,
+            backgroundColor: null,
+            data: null,
+          },
+        ],
+      },
     };
   },
   actions: {
@@ -29,6 +74,8 @@ export const useServerStore = defineStore('server', {
         for (let p = 0; p < people.length; p++) {
           console.log(p);
           await this.postPerson(people[p], data[0].chat_id);
+          this.chatid = data[0].chat_id;
+          console.log('ID: ' + this.chatid);
         }
         //navigator.vibration(200);
       } catch (err) {
@@ -41,7 +88,22 @@ export const useServerStore = defineStore('server', {
         const { data } = await axios.get(
           import.meta.env.VITE_SERVER + 'chat/' + id
         );
-        this.chat = data;
+        this.chat = data[0];
+        await this.getPeople(id);
+        //navigator.vibration(200);
+      } catch (error) {
+        console.log('catch');
+        if (error.response.status === 404)
+          this.message.value = 'Server antwortet nicht';
+        else this.message.value = error.response.data;
+      }
+    },
+    async getPeople(id) {
+      try {
+        const { data } = await axios.get(
+          import.meta.env.VITE_SERVER + 'chat/people/' + id
+        );
+        this.people = data;
         //navigator.vibration(200);
       } catch (error) {
         console.log('catch');
@@ -77,5 +139,68 @@ export const useServerStore = defineStore('server', {
       }
     },
     async patchChat() {},
+    async generateCharts(id) {
+      await this.getChat(id);
+      await this.Chart();
+    },
+    async Chart() {
+      this.sharedchart.labels = this.chat.months;
+
+      await this.sharedchart.datasets.push({
+        label: 'total messages',
+        data: this.chat.m_count,
+        backgroundColor: '#4caf50',
+        borderColor: '#8bc34a',
+      });
+      await this.sharedchart.datasets.push({
+        label: this.people[0].name,
+        data: this.people[0].pm_count,
+        backgroundColor: '#4c86af',
+        borderColor: '#5ba2d4',
+      });
+
+      this.sharedchart.datasets.push({
+        label: this.people[1].name,
+        data: this.people[1].pm_count,
+        backgroundColor: '#af4c58',
+        borderColor: '#c95764',
+      });
+
+      this.total = {
+        labels: this.chat.months,
+        datasets: [
+          {
+            label: 'total messages',
+            data: this.chat.m_count,
+            pointBackgroundColor: null,
+            pointHighlightStroke: null,
+            backgroundColor: '#4caf50',
+            borderColor: '#8bc34a',
+          },
+        ],
+      };
+      this.Person1 = {
+        labels: this.chat.months,
+        datasets: [
+          {
+            label: this.people[0].name,
+            data: this.people[0].pm_count,
+            backgroundColor: '#4c86af',
+            borderColor: '#5ba2d4',
+          },
+        ],
+      };
+      this.Person2 = {
+        labels: this.chat.months,
+        datasets: [
+          {
+            label: this.people[1].name,
+            data: this.people[1].pm_count,
+            backgroundColor: '#af4c58',
+            borderColor: '#c95764',
+          },
+        ],
+      };
+    },
   },
 });
