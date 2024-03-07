@@ -172,4 +172,11 @@ watch(update, async (newvalue, oldvalue) => {
   </div>
 </template>
 
-<style></style>
+<style>
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  src: url(/public/fonts/MaterialSymbolsRounded[FILL\,GRAD\,opsz\,wght].woff2)
+    format('woff2') !important;
+}
+</style>
